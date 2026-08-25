@@ -135,60 +135,289 @@ function dailyActions(d){
   `;
 }
 
+let autoTripDayInitialized = false;
+
+function tripDayIndex(){
+  const now = new Date();
+  const start = new Date(2026,8,14); // 14.9.2026
+  const end   = new Date(2026,8,24); // 24.9.2026
+
+  const today = new Date(now.getFullYear(),now.getMonth(),now.getDate());
+
+  if(today < start || today > end) return -1;
+
+  return Math.round((today-start)/86400000);
+}
+
+function initializeTripDay(){
+  if(autoTripDayInitialized) return;
+
+  const i = tripDayIndex();
+
+  if(i >= 0 && i < days.length){
+    selected = i;
+  }
+
+  autoTripDayInitialized = true;
+}
+
+function timeUntil(iso){
+  const diff = new Date(iso).getTime() - Date.now();
+
+  if(diff <= 0){
+    return 'הגיע זמן הטיסה';
+  }
+
+  const totalMinutes = Math.floor(diff/60000);
+  const daysLeft = Math.floor(totalMinutes/1440);
+  const hoursLeft = Math.floor((totalMinutes%1440)/60);
+  const minutesLeft = totalMinutes%60;
+
+  if(daysLeft > 0){
+    return `בעוד ${daysLeft} ימים, ${hoursLeft} שעות ו-${minutesLeft} דקות`;
+  }
+
+  return `בעוד ${hoursLeft} שעות ו-${minutesLeft} דקות`;
+}
+
+function dayHero(d){
+
+  const baseStyle =
+    `margin:0 0 18px;
+     padding:18px;
+     border-radius:22px;
+     background:linear-gradient(135deg,#071a26,#0f4b55);
+     color:white`;
+
+  if(d.day===1){
+    return `
+      <div style="${baseStyle}">
+        <div style="font-size:30px">✈️</div>
+
+        <h2 style="margin:5px 0;color:white">
+          היום טסים לאלבניה
+        </h2>
+
+        <div style="font-size:18px;font-weight:800;margin:8px 0">
+          ישראייר 6H 163
+        </div>
+
+        <div style="line-height:1.8">
+          🛫 המראה: 17:20 · נתב״ג טרמינל 1<br>
+          🛬 נחיתה: 19:15 · טירנה
+        </div>
+
+        <div style="
+          margin-top:12px;
+          background:#ffffff18;
+          border-radius:14px;
+          padding:10px;
+          font-weight:800">
+          ⏳ ${timeUntil('2026-09-14T17:20:00+03:00')}
+        </div>
+
+        <div style="margin-top:12px">
+          🚗 לאחר הנחיתה: איסוף רכב ונסיעה לקרויה
+        </div>
+      </div>
+    `;
+  }
+
+  if(d.day===11){
+    return `
+      <div style="${baseStyle}">
+        <div style="font-size:30px">✈️</div>
+
+        <h2 style="margin:5px 0;color:white">
+          היום חוזרים הביתה
+        </h2>
+
+        <div style="font-size:18px;font-weight:800;margin:8px 0">
+          ישראייר 6H 162
+        </div>
+
+        <div style="line-height:1.8">
+          🛫 המראה מטירנה: 11:45<br>
+          🛬 נחיתה בתל אביב: 15:30
+        </div>
+
+        <div style="
+          margin-top:12px;
+          background:#ffffff18;
+          border-radius:14px;
+          padding:10px;
+          font-weight:800">
+          ⏳ ${timeUntil('2026-09-24T11:45:00+02:00')}
+        </div>
+
+        <div style="margin-top:12px">
+          ⏰ מומלץ להיות בשדה כ־3 שעות לפני ההמראה
+        </div>
+      </div>
+    `;
+  }
+
+  if(d.day===6){
+    return `
+      <div style="${baseStyle}">
+        <div style="font-size:30px">🚤</div>
+        <h2 style="margin:5px 0;color:white">
+          היום: אגם קומאן ונהר שאלה
+        </h2>
+        <div>
+          יום שיט מלא · יציאה מוקדמת משקודר
+        </div>
+      </div>
+    `;
+  }
+
+  if(d.day===4){
+    return `
+      <div style="${baseStyle}">
+        <div style="font-size:30px">💧</div>
+        <h2 style="margin:5px 0;color:white">
+          היום: העין הכחולה של ת׳ת
+        </h2>
+        <div>
+          ג׳יפ מקומי מומלץ לקיצור הדרך · יום בקצב רגוע
+        </div>
+      </div>
+    `;
+  }
+
+  if([2,5,7,8,10].includes(d.day)){
+    return `
+      <div style="${baseStyle}">
+        <div style="font-size:30px">🚗</div>
+        <h2 style="margin:5px 0;color:white">
+          יום מעבר · ${d.city}
+        </h2>
+        <div>
+          זמן נסיעה משוער: ${d.drive}
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div style="${baseStyle}">
+      <div style="font-size:30px">${d.icon}</div>
+      <h2 style="margin:5px 0;color:white">
+        ${d.city}
+      </h2>
+      <div>
+        היום בקצב שלנו · ${d.drive}
+      </div>
+    </div>
+  `;
+}
+
 function today(){
+
+  initializeTripDay();
+
   let d = days[selected];
-  let map = `https://www.google.com/maps?q=${encodeURIComponent(d.en)}&output=embed`;
+
+  let map =
+    `https://www.google.com/maps?q=${encodeURIComponent(d.en)}&output=embed`;
 
   return title(
     '☀️ היום שלי',
-    'כל מה שצריך ליום אחד',
-    'בחרו יום וקבלו תוכנית, קושי, נסיעה, קישורים ומפה.'
+    `יום ${d.day} · ${d.date}`,
+    'התוכנית המרכזית, ניווט, מזג אוויר, אוכל ומפת היום.'
   )
+
   + strip()
+
+  + dayHero(d)
+
   + `
   <div class="grid">
 
     <section class="card">
 
       <div class="top">
+
         <div>
-          <small>יום ${d.day} · ${d.date}</small>
+
+          <small>
+            יום ${d.day} · ${d.date}
+          </small>
 
           <h2>
-            <a target="_blank"
-               href="${mapsUrl(d.en)}"
-               style="color:#087487;text-decoration:underline;text-underline-offset:3px">
+            <a
+              target="_blank"
+              href="${mapsUrl(d.en)}"
+              style="
+                color:#087487;
+                text-decoration:underline;
+                text-underline-offset:3px">
               ${d.city}
             </a>
           </h2>
+
         </div>
 
-        <div class="bigico">${d.icon}</div>
+        <div class="bigico">
+          ${d.icon}
+        </div>
+
       </div>
 
       <div class="tags">
-        <span class="tag">קושי: ${d.difficulty}</span>
-        <span class="tag">${d.drive}</span>
-        <span class="tag">לינה: ${linkPlaces(d.sleep)}</span>
+
+        <span class="tag">
+          קושי: ${d.difficulty}
+        </span>
+
+        <span class="tag">
+          ${d.drive}
+        </span>
+
+        <span class="tag">
+          לינה: ${linkPlaces(d.sleep)}
+        </span>
+
       </div>
 
       ${dailyActions(d)}
 
+      <h3 style="margin-top:22px">
+        📋 מה עושים היום
+      </h3>
+
       ${d.plan.map((p,i)=>`
         <div class="step">
-          <span class="num">${i+1}</span>
-          <span>${linkPlaces(p)}</span>
+
+          <span class="num">
+            ${i+1}
+          </span>
+
+          <span>
+            ${linkPlaces(p)}
+          </span>
+
         </div>
       `).join('')}
 
       <div class="tips">
-        <b>💡 דגשים שלנו</b><br>
+
+        <b>
+          💡 דגשים שלנו
+        </b>
+
+        <br>
+
         ${d.tips.map(t=>'• '+t).join('<br>')}
+
       </div>
 
     </section>
 
-    <iframe loading="lazy" src="${map}"></iframe>
+    <iframe
+      loading="lazy"
+      src="${map}">
+    </iframe>
 
   </div>
   `;
