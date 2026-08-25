@@ -188,40 +188,59 @@ function dayHero(d){
      border-radius:22px;
      background:linear-gradient(135deg,#071a26,#0f4b55);
      color:white`;
+if(d.day===1){
+  return `
+    <div style="
+      margin:0 0 16px;
+      padding:14px 16px;
+      border-radius:18px;
+      background:linear-gradient(135deg,#071a26,#0f4b55);
+      color:white">
 
-  if(d.day===1){
-    return `
-      <div style="${baseStyle}">
-        <div style="font-size:30px">✈️</div>
+      <div style="
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px">
 
-        <h2 style="margin:5px 0;color:white">
-          היום טסים לאלבניה
-        </h2>
+        <div>
+          <div style="font-size:21px;font-weight:900">
+            ✈️ היום טסים לאלבניה
+          </div>
 
-        <div style="font-size:18px;font-weight:800;margin:8px 0">
-          ישראייר 6H 163
+          <div style="
+            margin-top:7px;
+            font-size:16px;
+            line-height:1.7">
+            <b>ישראייר 6H 163</b><br>
+            17:20 נתב״ג → 19:15 טירנה
+          </div>
         </div>
 
-        <div style="line-height:1.8">
-          🛫 המראה: 17:20 · נתב״ג טרמינל 1<br>
-          🛬 נחיתה: 19:15 · טירנה
+        <div style="font-size:38px">
+          🇦🇱
         </div>
 
-        <div style="
-          margin-top:12px;
-          background:#ffffff18;
-          border-radius:14px;
-          padding:10px;
-          font-weight:800">
-          ⏳ ${timeUntil('2026-09-14T17:20:00+03:00')}
-        </div>
-
-        <div style="margin-top:12px">
-          🚗 לאחר הנחיתה: איסוף רכב ונסיעה לקרויה
-        </div>
       </div>
-    `;
-  }
+
+      <div style="
+        margin-top:10px;
+        padding-top:10px;
+        border-top:1px solid rgba(255,255,255,.25);
+        font-size:15px">
+        🚗 לאחר הנחיתה: איסוף רכב → קרויה
+      </div>
+
+      <div style="
+        margin-top:8px;
+        font-size:14px;
+        opacity:.9">
+        ⏳ ${timeUntil('2026-09-14T17:20:00+03:00')}
+      </div>
+
+    </div>
+  `;
+}
 
   if(d.day===11){
     return `
