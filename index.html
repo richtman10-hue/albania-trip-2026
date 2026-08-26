@@ -443,76 +443,125 @@ function today(){
 }
 function plan(){return title('🗓️ תכנון','מסלול, טיסות ומשימות','מהנחיתה ועד החזרה.')+`<section class="flights" aria-labelledby="flights-title"><h3 id="flights-title">✈️ הטיסות שלנו</h3><div class="flightGrid"><article class="flightCard"><div class="flightHead"><div><small>טיסת הלוך · 14.9.2026</small><h4>ישראייר</h4></div><span class="flightCode">6H 163</span></div><div class="flightRoute">תל אביב → טירנה, אלבניה</div><div class="flightDetails"><span><b>המראה:</b> 17:20 · נמל התעופה בן גוריון, טרמינל 1</span><span><b>נחיתה:</b> 19:15 · טירנה, אלבניה</span></div><div class="countdownWrap"><b>הספירה לאחור להמראה</b><div class="countdown" id="flightCountdown" aria-live="polite"><div class="countdownBox"><strong id="countdownDays">00</strong><span>ימים</span></div><div class="countdownBox"><strong id="countdownHours">00</strong><span>שעות</span></div><div class="countdownBox"><strong id="countdownMinutes">00</strong><span>דקות</span></div><div class="countdownBox"><strong id="countdownSeconds">00</strong><span>שניות</span></div></div></div></article><article class="flightCard"><div class="flightHead"><div><small>טיסת חזור · 24.9.2026</small><h4>ישראייר</h4></div><span class="flightCode">6H 162</span></div><div class="flightRoute">טירנה → תל אביב</div><div class="flightDetails"><span><b>המראה:</b> 11:45 · טירנה</span><span><b>נחיתה:</b> 15:30 · תל אביב</span></div></article></div></section><div class="route">${days.map(d=>`<div class="routeItem"><div class="round">${d.icon}</div><div><small>${d.date} · יום ${d.day}</small><b style="display:block">${d.city}</b><small>${d.drive} · לינה: ${d.sleep}</small></div></div>`).join('')}</div>`}
 function attr(){
+
+  const groups = {};
+
+  attractions.forEach(a=>{
+    const city = a[0];
+
+    if(!groups[city]){
+      groups[city] = [];
+    }
+
+    groups[city].push(a);
+  });
+
   return title(
     '🏰 אטרקציות',
     'מאגר המקומות שלנו',
-    'כל האטרקציות מסודרות לפי יעד. לחצו על שם האטרקציה למפה, או על מידע נוסף.'
+    'האטרקציות מסודרות לפי יעד. המאגר נשאר קבוע גם אם סדר ימי הטיול משתנה.'
   )+
-  `<div class="tiles">
 
-    ${attractions.map(a=>{
+  Object.entries(groups).map(([city,items])=>`
 
-      const query = `${a[2]} ${a[0]} Albania`;
+    <section style="margin-bottom:28px">
 
-      return `
-        <div class="tile">
+      <div style="
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        margin-bottom:12px">
 
-          <div class="ico">
-            ${a[1]}
-          </div>
+        <h2 style="margin:0">
+          📍 ${city}
+        </h2>
 
-          <small>
-            ${a[0]}
-          </small>
+        <a
+          class="btn"
+          target="_blank"
+          rel="noopener"
+          href="${mapsUrl(city+' Albania')}">
+          🗺️ מפה
+        </a>
 
-          <h3>
-            <a
-              target="_blank"
-              rel="noopener"
-              href="${mapsUrl(query)}"
-              style="
-                color:#087487;
-                text-decoration:underline;
-                text-underline-offset:3px;
-                font-weight:900">
-              ${a[2]}
-            </a>
-          </h3>
+      </div>
 
-          <b>
-            קושי: ${a[3]}
-          </b>
+      <div class="tiles">
 
-          <div style="
-            display:flex;
-            gap:8px;
-            flex-wrap:wrap;
-            margin-top:14px">
+        ${items.map(a=>{
 
-            <a
-              class="btn"
-              target="_blank"
-              rel="noopener"
-              href="${mapsUrl(query)}">
-              📍 ניווט
-            </a>
+          const query = `${a[2]} ${a[0]} Albania`;
 
-            <a
-              class="btn"
-              target="_blank"
-              rel="noopener"
-              href="https://www.google.com/search?q=${encodeURIComponent(query)}">
-              ℹ️ מידע
-            </a>
+          return `
 
-          </div>
+            <div class="tile">
 
-        </div>
-      `;
+              <div class="ico">
+                ${a[1]}
+              </div>
 
-    }).join('')}
+              <small>
+                ${a[0]}
+              </small>
 
-  </div>`;
+              <h3>
+
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="${mapsUrl(query)}"
+                  style="
+                    color:#087487;
+                    text-decoration:underline;
+                    text-underline-offset:3px;
+                    font-weight:900">
+
+                  ${a[2]}
+
+                </a>
+
+              </h3>
+
+              <b>
+                קושי: ${a[3]}
+              </b>
+
+              <div style="
+                display:flex;
+                gap:8px;
+                flex-wrap:wrap;
+                margin-top:14px">
+
+                <a
+                  class="btn"
+                  target="_blank"
+                  rel="noopener"
+                  href="${mapsUrl(query)}">
+                  📍 ניווט
+                </a>
+
+                <a
+                  class="btn"
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.google.com/search?q=${encodeURIComponent(query)}">
+                  ℹ️ מידע
+                </a>
+
+              </div>
+
+            </div>
+
+          `;
+
+        }).join('')}
+
+      </div>
+
+    </section>
+
+  `).join('');
 }
 function tools(){let d=days[selected];return title('🧰 כלים','כל מה שצריך בדרך','ניווט, מטבע, נהיגה וחירום.')+`<div class="tiles"><div class="tile"><div class="ico">🗺️</div><h3>Google Maps</h3><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.en)}">פתח ל-${d.city}</a></div><div class="tile"><div class="ico">💶</div><h3>מטבע</h3><p>לק אלבני (ALL). מומלץ להחזיק מזומן קטן.</p></div><div class="tile"><div class="ico">🚗</div><h3>נהיגה</h3><p>בכבישים הרריים לא למהר ולהשאיר מרווח זמן.</p></div><div class="tile"><div class="ico">🎒</div><h3>לתיק היומי</h3><p>מים, כובע, שכבה חמה, משקפי שמש ומטען נייד.</p></div><div class="tile"><div class="ico">📞</div><h3>חירום</h3><p>112 — מספר החירום האירופי.</p></div><div class="tile"><div class="ico">🥾</div><h3>קצב</h3><p>מתחילים קל ובודקים את השטח לפני שממשיכים.</p></div></div>`}
 function food(){let x=[['🥐','Byrek','מאפה מקומי במילוי גבינה, תרד או בשר'],['🍲','Tavë Kosi','כבש אפוי עם יוגורט וביצה'],['🍢','Qofte','קציצות מתובלות'],['🐟','דג טרי','מומלץ בחוף ובשקודר'],['🍨','קפה וגלידה','עצירה רגועה בוולורה ובטירנה']];return title('🍜 אוכל','מה כדאי לטעום','כמה מנות מקומיות בדרך.')+`<div class="tiles">${x.map(a=>`<div class="tile"><div class="ico">${a[0]}</div><h3>${a[1]}</h3><p>${a[2]}</p></div>`).join('')}</div>`}
