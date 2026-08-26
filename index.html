@@ -464,29 +464,51 @@ function attr(){
 
   Object.entries(groups).map(([city,items])=>`
 
-    <section style="margin-bottom:28px">
+<section style="margin-bottom:34px">
 
+  <div style="
+    background:linear-gradient(135deg,#071a26,#0f4b55);
+    color:white;
+    border-radius:22px;
+    padding:16px 18px;
+    margin:8px 0 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    box-shadow:0 5px 14px rgba(0,0,0,.10)">
+
+    <div>
       <div style="
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:12px;
-        margin-bottom:12px">
-
-        <h2 style="margin:0">
-          📍 ${city}
-        </h2>
-
-        <a
-          class="btn"
-          target="_blank"
-          rel="noopener"
-          href="${mapsUrl(city+' Albania')}">
-          🗺️ מפה
-        </a>
-
+        font-size:13px;
+        opacity:.75;
+        margin-bottom:3px">
+        אטרקציות באזור
       </div>
 
+      <div style="
+        font-size:25px;
+        font-weight:900">
+        📍 ${city}
+      </div>
+    </div>
+
+    <a
+      target="_blank"
+      rel="noopener"
+      href="${mapsUrl(city+' Albania')}"
+      style="
+        background:white;
+        color:#087487;
+        text-decoration:none;
+        padding:10px 14px;
+        border-radius:16px;
+        font-weight:900;
+        white-space:nowrap">
+      🗺️ מפה
+    </a>
+
+  </div>
       <div class="tiles">
 
         ${items.map(a=>{
