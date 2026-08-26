@@ -585,7 +585,195 @@ function attr(){
 
   `).join('');
 }
-function tools(){let d=days[selected];return title('🧰 כלים','כל מה שצריך בדרך','ניווט, מטבע, נהיגה וחירום.')+`<div class="tiles"><div class="tile"><div class="ico">🗺️</div><h3>Google Maps</h3><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.en)}">פתח ל-${d.city}</a></div><div class="tile"><div class="ico">💶</div><h3>מטבע</h3><p>לק אלבני (ALL). מומלץ להחזיק מזומן קטן.</p></div><div class="tile"><div class="ico">🚗</div><h3>נהיגה</h3><p>בכבישים הרריים לא למהר ולהשאיר מרווח זמן.</p></div><div class="tile"><div class="ico">🎒</div><h3>לתיק היומי</h3><p>מים, כובע, שכבה חמה, משקפי שמש ומטען נייד.</p></div><div class="tile"><div class="ico">📞</div><h3>חירום</h3><p>112 — מספר החירום האירופי.</p></div><div class="tile"><div class="ico">🥾</div><h3>קצב</h3><p>מתחילים קל ובודקים את השטח לפני שממשיכים.</p></div></div>`}
+function tools(){
+  let d=days[selected];
+
+  return title(
+    '🧰 כלים',
+    'כל מה שצריך בדרך',
+    'מטבע, ניווט, נהיגה וחירום.'
+  )+
+
+  `<div class="tiles">
+
+    <div class="tile" style="grid-column:1/-1">
+      <div class="ico">💱</div>
+      <h3>שערי מטבע</h3>
+
+      <div id="currencyRates">
+        <p>טוען שערים עדכניים...</p>
+      </div>
+
+      <button
+        class="btn"
+        style="margin-top:12px"
+        onclick="loadCurrencyRates(true)">
+        🔄 רענן שערים
+      </button>
+
+      <small
+        id="currencyUpdated"
+        style="display:block;margin-top:10px;color:#60717a">
+      </small>
+    </div>
+
+    <div class="tile">
+      <div class="ico">🗺️</div>
+      <h3>Google Maps</h3>
+      <a
+        class="btn"
+        target="_blank"
+        href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.en)}">
+        פתח ל-${d.city}
+      </a>
+    </div>
+
+    <div class="tile">
+      <div class="ico">🚗</div>
+      <h3>נהיגה</h3>
+      <p>בכבישים הרריים לא למהר ולהשאיר מרווח זמן.</p>
+    </div>
+
+    <div class="tile">
+      <div class="ico">🎒</div>
+      <h3>לתיק היומי</h3>
+      <p>מים, כובע, שכבה חמה, משקפי שמש ומטען נייד.</p>
+    </div>
+
+    <div class="tile">
+      <div class="ico">📞</div>
+      <h3>חירום</h3>
+      <p>112 — מספר החירום האירופי.</p>
+    </div>
+
+    <div class="tile">
+      <div class="ico">🥾</div>
+      <h3>קצב</h3>
+      <p>מתחילים קל ובודקים את השטח לפני שממשיכים.</p>
+    </div>
+
+  </div>`;
+}
+
+async function loadCurrencyRates(force=false){
+
+  const box=document.getElementById('currencyRates');
+  const updated=document.getElementById('currencyUpdated');
+
+  if(!box) return;
+
+  if(!force){
+    const saved=localStorage.getItem('albaniaCurrencyRates');
+
+    if(saved){
+      try{
+        const data=JSON.parse(saved);
+        showCurrencyRates(data);
+      }catch(e){}
+    }
+  }
+
+  try{
+
+    const response=
+      await fetch('https://open.er-api.com/v6/latest/EUR');
+
+    if(!response.ok){
+      throw new Error('rate error');
+    }
+
+    const data=await response.json();
+
+    const all=data.rates.ALL;
+    const ils=data.rates.ILS;
+
+    const rates={
+      allToIls:(1000/all)*ils,
+      allToEur:1000/all,
+      eurToIls:ils,
+      updated:new Date().toLocaleString('he-IL')
+    };
+
+    localStorage.setItem(
+      'albaniaCurrencyRates',
+      JSON.stringify(rates)
+    );
+
+    showCurrencyRates(rates);
+
+  }catch(e){
+
+    const saved=localStorage.getItem('albaniaCurrencyRates');
+
+    if(saved){
+      const data=JSON.parse(saved);
+      showCurrencyRates(data,true);
+    }else{
+      box.innerHTML=
+        '<p>לא ניתן כרגע לקבל שערי מטבע. נסו שוב כשיש חיבור לאינטרנט.</p>';
+    }
+  }
+}
+
+function showCurrencyRates(rates,offline=false){
+
+  const box=document.getElementById('currencyRates');
+  const updated=document.getElementById('currencyUpdated');
+
+  if(!box) return;
+
+  box.innerHTML=`
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:12px">
+
+      <div style="
+        background:#f4f7f8;
+        border-radius:16px;
+        padding:14px;
+        text-align:center">
+
+        <small>1000 לק</small>
+        <strong style="display:block;font-size:22px;margin-top:5px">
+          ₪${rates.allToIls.toFixed(2)}
+        </strong>
+      </div>
+
+      <div style="
+        background:#f4f7f8;
+        border-radius:16px;
+        padding:14px;
+        text-align:center">
+
+        <small>1000 לק</small>
+        <strong style="display:block;font-size:22px;margin-top:5px">
+          €${rates.allToEur.toFixed(2)}
+        </strong>
+      </div>
+
+      <div style="
+        background:#f4f7f8;
+        border-radius:16px;
+        padding:14px;
+        text-align:center">
+
+        <small>1 יורו</small>
+        <strong style="display:block;font-size:22px;margin-top:5px">
+          ₪${rates.eurToIls.toFixed(2)}
+        </strong>
+      </div>
+
+    </div>
+  `;
+
+  if(updated){
+    updated.textContent=
+      (offline?'⚠️ שער אחרון שנשמר · ':'עודכן: ')
+      +rates.updated;
+  }
+}
 function food(){let x=[['🥐','Byrek','מאפה מקומי במילוי גבינה, תרד או בשר'],['🍲','Tavë Kosi','כבש אפוי עם יוגורט וביצה'],['🍢','Qofte','קציצות מתובלות'],['🐟','דג טרי','מומלץ בחוף ובשקודר'],['🍨','קפה וגלידה','עצירה רגועה בוולורה ובטירנה']];return title('🍜 אוכל','מה כדאי לטעום','כמה מנות מקומיות בדרך.')+`<div class="tiles">${x.map(a=>`<div class="tile"><div class="ico">${a[0]}</div><h3>${a[1]}</h3><p>${a[2]}</p></div>`).join('')}</div>`}
 function near(){return title('📍 סביבי','מה יש קרוב אלינו','פתחו חיפוש סביב המיקום הנוכחי.')+`<div class="card"><button class="btn" onclick="locate()">📍 מצא את המיקום שלי</button><div id="nearout" style="margin-top:15px"></div></div>`}
 function locate(){navigator.geolocation?navigator.geolocation.getCurrentPosition(p=>{let q=['מסעדות','בתי קפה','בתי מרקחת','סופרמרקט','תחנת דלק'];nearout.innerHTML=q.map(x=>`<a class="btn" style="margin:4px" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x)}&center=${p.coords.latitude},${p.coords.longitude}">${x}</a>`).join('')},()=>nearout.innerHTML='לא התקבלה הרשאת מיקום.'):0}
@@ -595,7 +783,10 @@ function webtab(){return title('🌐 המלצות','מה לבדוק סמוך ל�
 let countdownTimer;
 function updateCountdown(){let remaining=Math.max(0,new Date('2026-09-14T17:20:00+03:00').getTime()-Date.now()),daysLeft=Math.floor(remaining/86400000),hoursLeft=Math.floor(remaining%86400000/3600000),minutesLeft=Math.floor(remaining%3600000/60000),secondsLeft=Math.floor(remaining%60000/1000),values=[daysLeft,hoursLeft,minutesLeft,secondsLeft],ids=['countdownDays','countdownHours','countdownMinutes','countdownSeconds'];ids.forEach((id,i)=>{let element=document.getElementById(id);if(element)element.textContent=String(values[i]).padStart(2,'0')})}
 function startCountdown(){clearInterval(countdownTimer);if(tab==='plan'){updateCountdown();countdownTimer=setInterval(updateCountdown,1000)}}
-function render(){renderNav();app.innerHTML=tab==='home'?home():tab==='today'?today():tab==='plan'?plan():tab==='attr'?attr():tab==='tools'?tools():tab==='food'?food():tab==='near'?near():tab==='lang'?lang():webtab();startCountdown()}
+function render(){renderNav();app.innerHTML=tab==='home'?home():tab==='today'?today():tab==='plan'?plan():tab==='attr'?attr():tab==='tools'?tools():tab==='food'?food():tab==='near'?near():tab==='lang'?lang():webtab();
+ if(tab==='tools'){
+  setTimeout(()=>loadCurrencyRates(),100);
+}                 startCountdown()}
 render();if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
 </script></body></html>
 
