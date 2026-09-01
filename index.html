@@ -4,7 +4,7 @@
 <script>
 const days=[
 {"day":1,"date":"14.9","city":"נחיתה בטירנה → רינאס","en":"Hotel Muja Rinas Albania","icon":"✈️","sleep":"Hotel Muja · Rinas","hotel":"Hotel Muja","hotelQuery":"Hotel Muja Rinas Albania","parking":"חניה פרטית חינם לפי ההזמנה; נשלח למלון אישור נוסף","difficulty":"קל מאוד","drive":"נסיעה קצרה מהשדה","plan":["טיסת ישראייר 6H 163 · המראה 17:20 מנתב״ג טרמינל 1 · נחיתה בטירנה 19:15","איסוף הרכב השכור","נסיעה קצרה ל-Hotel Muja ברינאס","ארוחת ערב והתארגנות לשינה"],"tips":["לא מתכננים אטרקציות בערב הנחיתה","להכין מראש את הניווט למלון"]},
-{"day":2,"date":"15.9","city":"רינאס → ת׳ת","en":"Theth Albania","icon":"⛰️","sleep":"Hotel Zallina · Theth","hotel":"Hotel Zallina","hotelQuery":"Hotel Zallina Theth Albania","parking":"חניה פרטית חינם; המלון אישר שיש חניה לאורחים","difficulty":"קל–בינוני","drive":"יום נסיעה צפונה לת׳ת","plan":["ארוחת בוקר ויציאה צפונה","נסיעה לת׳ת בקצב רגוע עם עצירות נוף","צ׳ק-אין ב-Hotel Zallina","טיול ערב קצר בכפר ובאזור הכנסייה"],"tips":["הכביש ההררי מפותל — לא למהר","להגיע לת׳ת באור יום"]},
+{"day":2,"date":"15.9","city":"רינאס → ת׳ת","en":"Theth Albania","icon":"⛰️","sleep":"Hotel Zallina · Theth","hotel":"Hotel Zallina","hotelQuery":"Hotel Zallina Theth Albania","parking":"חניה פרטית חינם; המלון אישר שיש חניה לאורחים","difficulty":"קל–בינוני","drive":"כ־4–5 שעות כולל עצירות","plan":["08:00 · ארוחת בוקר ב-Hotel Muja","09:00 · יציאה מ-Hotel Muja צפונה לכיוון ת׳ת","10:30 בערך · עצירת קפה והתרעננות באזור Koplik","לפני העלייה להרים · תדלוק מלא ב-Koplik","נסיעה על SH21 דרך Bogë לכיוון Qafë e Thorës","12:15–12:45 בערך · עצירת נוף וצילום ב-Qafë e Thorës","13:30–14:00 בערך · הגעה ל-Hotel Zallina וצ׳ק-אין","14:00–16:30 · ארוחת צהריים ומנוחה","17:00 · סיבוב ערב קל בכפר ובכנסיית ת׳ת"],"tips":["לתדלק ב-Koplik לפני העלייה לת׳ת","הכביש ההררי מפותל — לנסוע בנחת ולהגיע באור יום","Qafë e Thorës היא עצירת הנוף המרכזית של היום","בירידות להשתמש גם בבלימת מנוע ולא לרכב ברצף על הבלמים"]},
 {"day":3,"date":"16.9","city":"ת׳ת","en":"Theth Albania","icon":"🌲","sleep":"Hotel Zallina · Theth","hotel":"Hotel Zallina","hotelQuery":"Hotel Zallina Theth Albania","parking":"חניה פרטית חינם; המלון אישר שיש חניה לאורחים","difficulty":"קל","drive":"מקומי בלבד","plan":["בוקר רגוע בעמק ת׳ת","כנסיית ת׳ת והכפר","מגדל הנקמה מבחוץ/ביקור קצר","מסלול טבע קצר לפי מזג האוויר וההרגשה","העין הכחולה רק אם מתאים — עדיפות לג׳יפ מקומי לקיצור הדרך"],"tips":["לא מתכננים את מעבר ת׳ת–ואלבונה ברגל","המטרה היא יום נופי ולא מאומץ"]},
 {"day":4,"date":"17.9","city":"ת׳ת → קומאן","en":"Koman Albania","icon":"🚙","sleep":"Koman Twin Cabins","hotel":"Koman Twin Cabins","hotelQuery":"Koman Twin Cabins Albania","parking":"חניה פרטית חינם; המלון אישר שיש חניה","difficulty":"קל–בינוני","drive":"כ־4 שעות ומעלה עם עצירות","plan":["ארוחת בוקר ויציאה מת׳ת","נסיעה לכיוון קומאן","עצירות קפה ונוף בדרך לפי הצורך","הגעה ל-Koman Twin Cabins והתארגנות","הכנה לשיט של מחר"],"tips":["להשאיר מרווח זמן לכביש SH25","לאשר בערב את שעת ההתייצבות לשיט לשאלה"]},
 {"day":5,"date":"18.9","city":"קומאן → נהר שאלה → שקודר","en":"Shala River Albania","icon":"🚤","sleep":"Hotel Chicago · Shkoder","hotel":"Hotel Chicago","hotelQuery":"Hotel Chicago Shkoder Albania","parking":"המלון אישר שיש חניה לאורחים","difficulty":"קל","drive":"שיט + נסיעה לשקודר","plan":["התייצבות בקומאן סביב 09:00","יציאה בסירה לנהר שאלה סביב 09:30","שהייה רגועה באזור נהר שאלה","חזרה לקומאן סביב 15:30","איסוף הרכב ונסיעה לשקודר","צ׳ק-אין ב-Hotel Chicago וערב במרכז העיר"],"tips":["לאשר יום קודם את השיט ומקום החניה","כובע, מים ושכבה קלה לרוח"]},
@@ -124,6 +124,22 @@ function linkPlaces(text){
 
 function specialActions(d){
   let buttons = [];
+  if(d.day===2){
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Koplik Albania')}">☕ Koplik</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('gas station Koplik Albania')}">⛽ תדלוק Koplik</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Qafe e Thores Albania')}">📸 Qafë e Thorës</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Hotel Zallina Theth Albania')}">🏨 Hotel Zallina</a>`);
+  }
+  if(d.day===2){
+    return `
+      <div style="${baseStyle}">
+        <div style="font-size:30px">⛰️</div>
+        <h2 style="margin:5px 0;color:white">היום עולים לת׳ת</h2>
+        <div>09:00 יציאה · Koplik · Qafë e Thorës · Hotel Zallina</div>
+      </div>
+    `;
+  }
+
   if(d.day===5){
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Koman Ferry Terminal Albania')}">🚤 טרמינל קומאן</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Shala River Albania')}">💎 נהר שאלה</a>`);
