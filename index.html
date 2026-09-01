@@ -130,16 +130,6 @@ function specialActions(d){
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Qafe e Thores Albania')}">📸 Qafë e Thorës</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Hotel Zallina Theth Albania')}">🏨 Hotel Zallina</a>`);
   }
-  if(d.day===2){
-    return `
-      <div style="${baseStyle}">
-        <div style="font-size:30px">⛰️</div>
-        <h2 style="margin:5px 0;color:white">היום עולים לת׳ת</h2>
-        <div>09:00 יציאה · Koplik · Qafë e Thorës · Hotel Zallina</div>
-      </div>
-    `;
-  }
-
   if(d.day===5){
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Koman Ferry Terminal Albania')}">🚤 טרמינל קומאן</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Shala River Albania')}">💎 נהר שאלה</a>`);
@@ -334,6 +324,16 @@ if(d.day===1){
         <div style="margin-top:12px">
           ⏰ מומלץ להיות בשדה כ־3 שעות לפני ההמראה
         </div>
+      </div>
+    `;
+  }
+
+  if(d.day===2){
+    return `
+      <div style="${baseStyle}">
+        <div style="font-size:30px">⛰️</div>
+        <h2 style="margin:5px 0;color:white">היום עולים לת׳ת</h2>
+        <div>09:00 יציאה · Koplik · Qafë e Thorës · Hotel Zallina</div>
       </div>
     `;
   }
