@@ -165,9 +165,6 @@ function specialActions(d){
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Rragam Waterfall Valbona Albania')}">💦 Rragam Waterfall</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Mulliri i Vjeter Valbona Albania')}">🏚️ Old Mill</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Xhema Lake Valbona Albania')}">💧 Xhema's Lake</a>`);
-    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Rilindja Restaurant Valbona Albania')}">🍽️ Rilindja · ניווט</a>`);
-    buttons.push(`<a class="btn" href="tel:+355682200496">📞 Rilindja</a>`);
-    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('AMZA Valbona Mountain Retreat Albania')}">🍷 AMZA · ניווט</a>`);
   }
   if(d.day===8){
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Fierze Ferry Terminal Albania')}">⛴️ טרמינל פיירזה</a>`);
@@ -209,6 +206,16 @@ function valbonaRestaurantsCard(d){
       <p style="margin:0 0 12px;line-height:1.65">מסעדה מקומית ותיקה באווירה כפרית בלב העמק. מתאימה לחוויה אלבנית הררית מסורתית עם בשרים, גדי, פורל, גבינות מקומיות, ירקות ולחם ביתי. הבחירה שלנו לחוויה המקומית והאותנטית יותר.</p>
       <h3 style="margin:7px 0">חלופה · AMZA Valbona – Sofra</h3>
       <p style="margin:0;line-height:1.65">מסעדה אלבנית מסורתית בתוך Mountain Retreat מטופח, עם הגשה מעט יותר מודרנית ומוקפדת. אפשר למצוא מנות מקומיות כמו Fli, Jufka עם טלה וגדי צלוי. מתאימה לארוחה מעט יותר חגיגית או אם אין מקום ב-Rilindja.</p>
+    </div>`;
+}
+
+function valbonaRestaurantActions(d){
+  if(d.day!==7) return '';
+  return `
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px">
+      <a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Rilindja Restaurant Valbona Albania')}">🍽️ Rilindja · ניווט</a>
+      <a class="btn" href="tel:+355682200496">📞 Rilindja</a>
+      <a class="btn" target="_blank" rel="noopener" href="${mapsUrl('AMZA Valbona Mountain Retreat Albania')}">🍷 AMZA · ניווט</a>
     </div>`;
 }
 
@@ -568,7 +575,6 @@ function today(){
 
       </div>
 
-      ${valbonaRestaurantsCard(d)}
       ${dailyActions(d)}
       ${specialActions(d)}
       ${shalaBookingCard(d)}
@@ -603,6 +609,9 @@ function today(){
         ${d.tips.map(t=>'• '+t).join('<br>')}
 
       </div>
+
+      ${valbonaRestaurantsCard(d)}
+      ${valbonaRestaurantActions(d)}
 
     </section>
 
