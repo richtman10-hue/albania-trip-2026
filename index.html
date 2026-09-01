@@ -171,6 +171,20 @@ function specialActions(d){
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Koman Ferry Terminal Albania')}">📍 Koman Ferry Terminal</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Hotel Kroi Kruje Albania')}">🏨 Hotel Kroi</a>`);
   }
+  if(d.day===9){
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Old Bazaar Kruje Albania')}">🛍️ הבזאר הישן בקרויה</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Skanderbeg Museum Kruje Albania')}">🏰 מוזיאון סקנדרבג</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Bizant Boutique Hotel Coffee Bar Durres Albania')}">🏨 Bizant · ניווט</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Durres Amphitheatre Albania')}">🏛️ אמפיתיאטרון דורס</a>`);
+  }
+  if(d.day===10){
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Dajti Ekspres Tirana Albania')}">🚡 Dajti Ekspres</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('F&M Hotel 2 Tirana Albania')}">🏨 F&M Hotel 2</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Skanderbeg Square Tirana Albania')}">📍 כיכר סקנדרבג</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('BunkArt 2 Tirana Albania')}">🕳️ Bunk’Art 2</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Pyramid of Tirana Albania')}">🔺 הפירמידה</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Blloku Tirana Albania')}">🌆 Blloku</a>`);
+  }
   return buttons.length ? `<div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px">${buttons.join('')}</div>` : '';
 }
 
@@ -1072,18 +1086,3 @@ function render(){renderNav();app.innerHTML=tab==='home'?home():tab==='today'?to
 }                 startCountdown()}
 render();if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
 </script></body></html>
-  if(d.day===9){
-    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Old Bazaar Kruje Albania')}">🛍️ הבזאר הישן בקרויה</a>`);
-    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Skanderbeg Museum Kruje Albania')}">🏰 מוזיאון סקנדרבג</a>`);
-    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Bizant Boutique Hotel Coffee Bar Durres Albania')}">🏨 Bizant · ניווט</a>`);
-    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Durres Amphitheatre Albania')}">🏛️ אמפיתיאטרון דורס</a>`);
-  }
-  if(d.day===10){
-    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Dajti Ekspres Tirana Albania')}">🚡 Dajti Ekspres</a>`);
-    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('F&M Hotel 2 Tirana Albania')}">🏨 F&M Hotel 2</a>`);
-    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Skanderbeg Square Tirana Albania')}">📍 כיכר סקנדרבג</a>`);
-    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('BunkArt 2 Tirana Albania')}">🕳️ Bunk’Art 2</a>`);
-    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Pyramid of Tirana Albania')}">🔺 הפירמידה</a>`);
-    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Blloku Tirana Albania')}">🌆 Blloku</a>`);
-  }
-
