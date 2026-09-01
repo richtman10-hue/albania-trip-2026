@@ -216,6 +216,28 @@ function shalaBookingCard(d){
 }
 
 
+
+function komanRouteRestaurantsCard(d){
+  if(d.day!==4) return '';
+  return `
+    <div style="margin:16px 0;padding:16px;border:1px solid #dce5e8;border-radius:18px;background:#fffdf6">
+      <small style="color:#60717a">🍽️ ארוחה בדרך לקומאן · 17.9</small>
+      <h3 style="margin:7px 0">בחירה ראשונה · Mrizi i Zanave</h3>
+      <p style="margin:0 0 12px;line-height:1.65">אחת מחוויות האוכל הידועות באלבניה: Agroturizëm בסגנון Farm-to-Table בכפר Fishtë, עם חומרי גלם מהחווה ומהיצרנים המקומיים, גבינות, ירקות, בשרים ומנות אלבניות מסורתיות בפרשנות יצירתית. זו הארוחה המרכזית שלנו ביום הזה; מומלץ להזמין ל-15:00.</p>
+      <h3 style="margin:7px 0">חלופה · Restorant Perla · Vau i Dejës</h3>
+      <p style="margin:0;line-height:1.65">חלופה נוחה יותר על הדרך לקומאן, בקילומטר 4 של כביש Vau i Dejës–Koman. מסעדה עם תצפית יפה לאגם Vau i Dejës ומטבח מסורתי ובינלאומי. מתאימה אם נרצה לוותר על הסטייה ל-Mrizi או אם לוח הזמנים יתעכב.</p>
+    </div>`;
+}
+function komanRouteRestaurantActions(d){
+  if(d.day!==4) return '';
+  return `<div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px">
+    <a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Mrizi i Zanave Agroturizem Fishte Lezhe Albania')}">🍽️ Mrizi i Zanave · ניווט</a>
+    <a class="btn" href="tel:+355692108032">📞 Mrizi · הזמנה</a>
+    <a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Restorant Perla Vau i Dejes Albania')}">🍴 Perla · ניווט</a>
+    <a class="btn" href="tel:+355693543605">📞 Perla</a>
+  </div>`;
+}
+
 function valbonaRestaurantsCard(d){
   if(d.day!==7) return '';
   return `
@@ -720,6 +742,8 @@ function today(){
 
       </div>
 
+      ${komanRouteRestaurantsCard(d)}
+      ${komanRouteRestaurantActions(d)}
       ${valbonaRestaurantsCard(d)}
       ${valbonaRestaurantActions(d)}
       ${krujeRestaurantsCard(d)}
