@@ -1,4 +1,4 @@
-const CACHE='albania-2026-fullpage-viewer-v4';
+const CACHE='albania-2026-final-v5';
 const ASSETS=[
   "./",
   "./index.html",
@@ -12,6 +12,7 @@ const ASSETS=[
   "./docs/hotel_chicago_18sep.pdf",
   "./docs/hotel_kroi_21sep.pdf",
   "./docs/hotel_muja_14sep.pdf",
+  "./docs/hotel_muja_transfer_message.jpeg",
   "./docs/hotel_zallina_15-17sep.pdf",
   "./docs/israir_flights_14-24sep.pdf",
   "./docs/koman_twin_cabins_17sep.pdf",
@@ -71,4 +72,31 @@ const ASSETS=[
 ];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
-self.addEventListener('fetch',event=>{const req=event.request;if(req.mode==='navigate'){event.respondWith(fetch(req).then(r=>{const cp=r.clone();caches.open(CACHE).then(c=>c.put(req,cp));return r;}).catch(()=>caches.match(req).then(x=>x||caches.match('./index.html'))));return;}event.respondWith(caches.match(req).then(c=>c||fetch(req).then(r=>{if(req.method==='GET'&&r.ok){const cp=r.clone();caches.open(CACHE).then(x=>x.put(req,cp));}return r;})));});
+self.addEventListener('fetch',event=>{
+  const req=event.request;
+  if(req.mode==='navigate'){
+    event.respondWith(
+      fetch(req).then(r=>{
+        const cp=r.clone();
+        caches.open(CACHE).then(c=>c.put(req,cp));
+        return r;
+      }).catch(async()=>{
+        const url=new URL(req.url);
+        if(url.pathname.endsWith('/viewer.html')){
+          return (await caches.match('./viewer.html')) || (await caches.match(req,{ignoreSearch:true}));
+        }
+        return (await caches.match(req,{ignoreSearch:true})) || (await caches.match('./index.html'));
+      })
+    );
+    return;
+  }
+  event.respondWith(
+    caches.match(req,{ignoreSearch:true}).then(c=>c||fetch(req).then(r=>{
+      if(req.method==='GET'&&r.ok){
+        const cp=r.clone();
+        caches.open(CACHE).then(x=>x.put(req,cp));
+      }
+      return r;
+    }))
+  );
+});
