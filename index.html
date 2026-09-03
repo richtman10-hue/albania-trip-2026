@@ -126,6 +126,10 @@ function docOwnerBadge(owner){
   return `<span style="display:inline-block;padding:5px 9px;border-radius:999px;background:#eef4f5;font-size:12px;font-weight:800;margin-bottom:7px">${x.icon} ${x.label}</span>`;
 }
 
+function docViewerUrl(x){
+  return 'viewer.html?file='+encodeURIComponent(x.file)+'&title='+encodeURIComponent(x.title);
+}
+
 function dayDocumentsCard(d){
   const list=documents.filter(x=>x.days.includes(d.day));
   if(!list.length) return '';
@@ -135,7 +139,7 @@ function dayDocumentsCard(d){
     return `<div style="margin-top:10px">
       <b style="display:block;margin-bottom:7px">${ownerMeta[owner].icon} ${ownerMeta[owner].label}</b>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        ${items.map(x=>`<a class="btn" target="_blank" rel="noopener" href="${x.file}">${x.type} ${x.title}</a>`).join('')}
+        ${items.map(x=>`<a class="btn" target="_blank" rel="noopener" href="${docViewerUrl(x)}">${x.type} ${x.title}</a>`).join('')}
       </div>
     </div>`;
   }).join('');
@@ -168,7 +172,7 @@ function docsTab(){
     ${docOwnerBadge(x.owner)}
     <h3>${x.title}</h3>
     <p>${x.sub}</p>
-    <a class="btn" target="_blank" rel="noopener" href="${x.file}">📄 הצג אישור</a>
+    <a class="btn" target="_blank" rel="noopener" href="${docViewerUrl(x)}">📄 הצג אישור</a>
   </div>`).join('')}</div>`;
 }
 
