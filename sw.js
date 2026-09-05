@@ -1,4 +1,4 @@
-const CACHE='albania-2026-final-v5';
+const CACHE='albania-2026-final-v6';
 const ASSETS=[
   "./",
   "./index.html",
@@ -13,6 +13,7 @@ const ASSETS=[
   "./docs/hotel_kroi_21sep.pdf",
   "./docs/hotel_muja_14sep.pdf",
   "./docs/hotel_muja_transfer_message.jpeg",
+  "./docs/albania_pro_rent_15-24sep.pdf",
   "./docs/hotel_zallina_15-17sep.pdf",
   "./docs/israir_flights_14-24sep.pdf",
   "./docs/koman_twin_cabins_17sep.pdf",
@@ -30,6 +31,8 @@ const ASSETS=[
   "./docs/orit_israel_valbone_two_e_19-21sep.pdf",
   "./docs/shala_booking_18sep.png",
   "./docs/valbone_two_e_19-21sep.pdf",
+  "./previews/albania_pro_rent_15-24sep/page-1.webp",
+  "./previews/albania_pro_rent_15-24sep/page-2.webp",
   "./previews/bizant_boutique_22sep/page-1.webp",
   "./previews/bizant_boutique_22sep/page-2.webp",
   "./previews/ferry_fierze_koman_21sep/page-1.webp",
