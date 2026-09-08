@@ -1,4 +1,4 @@
-const CACHE='albania-2026-v28';
+const CACHE='albania-2026-v30';
 const ASSETS=[
   "./robots.txt",
   "./apple-touch-icon.png",
@@ -17,6 +17,9 @@ const ASSETS=[
   "./docs/hotel_kroi_21sep.pdf",
   "./docs/hotel_muja_14sep.pdf",
   "./docs/hotel_muja_transfer_message.jpeg",
+  "./docs/mrizi_confirmation_17sep.png",
+  "./docs/mrizi_confirmation_full_17sep.png",
+  "./docs/train_165_14sep.png",
   "./docs/albania_pro_rent_15-24sep.pdf",
   "./docs/hotel_zallina_15-17sep.pdf",
   "./docs/israir_flights_14-24sep.pdf",

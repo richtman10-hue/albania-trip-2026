@@ -3,19 +3,19 @@
 </style><style>.flights{margin-bottom:18px}.flights h3{font-size:23px;margin:0 0 13px}.flightGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.flightCard{background:white;border:1px solid #dce5e8;border-radius:23px;padding:20px}.flightHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}.flightHead h4{font-size:20px;margin:4px 0}.flightCode{direction:ltr;background:#eef8f2;color:#197345;border-radius:999px;padding:7px 10px;font-weight:900;white-space:nowrap}.flightRoute{font-size:18px;font-weight:900;margin-bottom:13px}.flightDetails{display:grid;gap:8px;color:#52636c}.countdownWrap{margin-top:17px;padding-top:16px;border-top:1px solid #e4eaec}.countdownWrap b{display:block;margin-bottom:10px}.countdown{direction:ltr;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.countdownBox{background:#10212b;color:white;border-radius:16px;padding:11px 6px;text-align:center}.countdownBox strong{display:block;font-size:24px;line-height:1}.countdownBox span{display:block;color:#ffffffb5;font-size:12px;margin-top:6px}@media(max-width:760px){.flightGrid{grid-template-columns:1fr}.flightCard{padding:18px}.countdownBox strong{font-size:21px}}</style></head><body><header><div class="wrap"><div class="eyebrow">ULTIMATE TRIP COMPANION</div><h1>אלבניה 2026 🇦🇱</h1><p>המסלול שלנו + המלצות + מפות + כלים לדרך</p><div class="chips"><span class="chip">14.9–24.9</span><span class="chip">10 לילות</span><span class="chip">רינאס · ת׳ת · קומאן · שקודר · ואלבונה · קרויה · דורס · טירנה</span><span class="chip" id="netStatus">בודק חיבור…</span></div><div class="nav" id="nav"></div></div></header><main class="wrap"><div id="app"></div></main><footer>אלבניה 2026 · Ultimate Trip Companion</footer>
 <script>
 const days=[
-{"day":1,"date":"14.9","city":"נחיתה בטירנה → רינאס","en":"Hotel Muja Rinas Albania","icon":"✈️","sleep":"Hotel Muja · Rinas","hotel":"Hotel Muja","hotelQuery":"Hotel Muja Rinas Albania","parking":"חניה פרטית חינם לפי ההזמנה; נשלח למלון אישור נוסף","difficulty":"קל מאוד","drive":"נסיעה קצרה מהשדה","plan":["טיסת ישראייר 6H 163 · המראה 17:20 מנתב״ג טרמינל 1 · נחיתה בטירנה 19:15","איסוף מזוודות → יציאה מאולם הנחיתות → משרד מוניות שדה התעופה → בקשה ל-Transfer to Hotel Muja Rinas","הסעה חינם מטעם Hotel Muja למלון; הרכב השכור יימסר במלון בבוקר 15.9","ארוחת ערב והתארגנות לשינה"],"tips":["לא מתכננים אטרקציות בערב הנחיתה","🚕 לאחר היציאה מאולם הנחיתות לגשת למשרד מוניות שדה התעופה ולבקש Transfer to Hotel Muja Rinas — ההסעה חינם","הרכב השכור אינו נאסף בלילה; הוא יימסר ב-Hotel Muja בבוקר 15.9"]},
-{"day":2,"date":"15.9","city":"רינאס → ת׳ת","en":"Theth Albania","icon":"⛰️","sleep":"Hotel Zallina · Theth","hotel":"Hotel Zallina","hotelQuery":"Hotel Zallina Theth Albania","parking":"חניה פרטית חינם; המלון אישר שיש חניה לאורחים","difficulty":"קל–בינוני","drive":"כ־4–5 שעות כולל עצירות","plan":["08:00 · ארוחת בוקר ב-Hotel Muja","לפני היציאה · קבלת Hyundai Tucson 2025 מ-Albania Pro Rent ב-Hotel Muja; צילום הרכב ובדיקת דלק/נזקים","09:00 · יציאה מ-Hotel Muja צפונה לכיוון ת׳ת","10:30 בערך · עצירת קפה והתרעננות באזור Koplik","לפני העלייה להרים · תדלוק מלא ב-Koplik","נסיעה על SH21 דרך Bogë לכיוון Qafë e Thorës","12:15–12:45 בערך · עצירת נוף וצילום ב-Qafë e Thorës","13:30–14:00 בערך · הגעה ל-Hotel Zallina וצ׳ק-אין","14:00–16:30 · ארוחת צהריים ומנוחה","17:00 · סיבוב ערב קל בכפר ובכנסיית ת׳ת"],"tips":["לתדלק ב-Koplik לפני העלייה לת׳ת","הכביש ההררי מפותל — לנסוע בנחת ולהגיע באור יום","Qafë e Thorës היא עצירת הנוף המרכזית של היום","בירידות להשתמש גם בבלימת מנוע ולא לרכב ברצף על הבלמים","🚗 אישור ההשכרה משותף לשני הזוגות ונשמר באפליקציה","☎️ Albania Pro Rent: +355 68 45 78 986"]},
-{"day":3,"date":"16.9","city":"ת׳ת · Blue Eye","en":"Blue Eye Theth Albania","icon":"💧","sleep":"Hotel Zallina · Theth","hotel":"Hotel Zallina","hotelQuery":"Hotel Zallina Theth Albania","parking":"חניה פרטית חינם; המלון אישר שיש חניה לאורחים","difficulty":"קל–בינוני","drive":"נסיעה קצרה + הליכה לעין הכחולה","plan":["ארוחת בוקר רגועה ב-Hotel Zallina","סביב 10:00 · יציאה ברכב לכיוון Nderlysa / חניית Blue Eye","חניה באזור Nderlysa","בחניה לבדוק אם פועל ג׳יפ/רכב מקומי בתשלום של כ־€5 שמקצר את ההליכה","אם ההקפצה פועלת — להשתמש בה ולחסוך ככל האפשר את קטע ההליכה","המשך רגלי לעין הכחולה בקצב רגוע","שהייה ארוכה ב-Blue Eye למנוחה, צילום והתרעננות","חזרה באותה הדרך לרכב","חזרה לת׳ת, ארוחת צהריים מאוחרת ומנוחה"],"tips":["⚠️ Blue Eye הוא מסלול אופציונלי — מחליטים במקום לפי ההרגשה; אין חובה להגיע עד הסוף","Blue Eye היא האטרקציה היחידה המשובצת כרגע בלו״ז של היום; מפל Grunas נשאר ברשימת האטרקציות כאפשרות נפרדת ולא מתוכננת כרגע","שירות ההקפצה המקומי אינו מובטח; בודקים בחניה באותו בוקר","אם אין הקפצה, יש לקחת בחשבון הליכה של כ־40–50 דקות לכל כיוון","נעלי הליכה נוחות, מים וכובע"]},
+{"day":1,"date":"14.9","city":"נחיתה בטירנה → רינאס","en":"Hotel Muja Rinas Albania","icon":"✈️","sleep":"Hotel Muja · Rinas","hotel":"Hotel Muja","hotelQuery":"Hotel Muja Rinas Albania","parking":"חניה פרטית חינם לפי ההזמנה; נשלח למלון אישור נוסף","difficulty":"קל מאוד","drive":"נסיעה קצרה מהשדה","plan":["🚆 רכבת ישראל 165 · יציאה מקריית מוצקין 12:32 · עצירה בבנימינה 13:26 · הגעה לנתב״ג 14:20 · ללא החלפה · משותף לכולנו","טיסת ישראייר 6H 163 · המראה 17:20 מנתב״ג טרמינל 1 · נחיתה בטירנה 19:15","איסוף מזוודות → יציאה מאולם הנחיתות → משרד מוניות שדה התעופה → בקשה ל-Transfer to Hotel Muja Rinas","הסעה חינם מטעם Hotel Muja למלון; הרכב השכור יימסר במלון בבוקר 15.9","ארוחת ערב והתארגנות לשינה"],"tips":["לצאת בזמן לתחנת קריית מוצקין · רכבת 165 יוצאת 12:32 ומגיעה לנתב״ג 14:20","לא מתכננים אטרקציות בערב הנחיתה","🚕 לאחר היציאה מאולם הנחיתות לגשת למשרד מוניות שדה התעופה ולבקש Transfer to Hotel Muja Rinas — ההסעה חינם","הרכב השכור אינו נאסף בלילה; הוא יימסר ב-Hotel Muja בבוקר 15.9"]},
+{"day":2,"date":"15.9","city":"רינאס → ת׳ת","en":"Theth Albania","icon":"⛰️","sleep":"Hotel Zallina · Theth","hotel":"Hotel Zallina","hotelQuery":"Hotel Zallina Theth Albania","parking":"חניה פרטית חינם; המלון אישר שיש חניה לאורחים","difficulty":"קל–בינוני","drive":"כ־4–5 שעות כולל עצירות","plan":["08:00 · ארוחת בוקר ב-Hotel Muja","לפני היציאה · קבלת Hyundai Tucson 2025 מ-Albania Pro Rent ב-Hotel Muja; צילום הרכב ובדיקת דלק/נזקים","09:00 · יציאה מ-Hotel Muja צפונה לכיוון ת׳ת","בדרך צפונה · עצירת SPAR להצטיידות לפני העלייה לת׳ת · מים, פירות, חטיפים וציוד לדרך; לשקול רכישת צידנית וגזייה","10:30–11:00 בערך · Koplik · קפה והתרעננות + תדלוק מלא לפני העלייה להרים","נסיעה על SH21 דרך Bogë · עצירה אופציונלית קצרה בכפר / צילום","המשך לכיוון Qafë e Thorës · בדרך אפשר לעצור במפרצי התצפית הבטוחים לצילום","12:15–13:00 בערך · Qafë e Thorës · עצירת נוף; אפשר לשלב קפה/ארוחה קלה ב-Buni i Bajraktarit שנמצאת ממש על הציר","אופציונלי בדרך/לקראת ההגעה · עצירת בירה קצרה ב-Te Lumi אם פתוח ונוח","13:45–14:30 בערך · הגעה ל-Hotel Zallina וצ׳ק-אין","14:00–16:30 · ארוחת צהריים ומנוחה","17:00 · סיבוב ערב קל בכפר ובכנסיית ת׳ת"],"tips":["🛒 לפני העלייה לת׳ת עוצרים ב-SPAR להצטיידות; לשקול צידנית וגזייה בנוסף למים/פירות/חטיפים","⛽ לתדלק מלא ב-Koplik לפני העלייה לת׳ת","הכביש ההררי מפותל — לנסוע בנחת ולהגיע באור יום","Qafë e Thorës היא עצירת הנוף המרכזית של היום; Buni i Bajraktarit יושבת במעבר עצמו ומתאימה מאוד לעצירת תצפית/קפה/אוכל","Te Lumi נשמרת כעצירת בירה אופציונלית בלבד — לא מעכבים את ההגעה לת׳ת אם היום מתארך","🏨 Hotel Zallina: יש אפשרות לכביסה — לבדוק בקבלה מחיר וזמן החזרה","🚗 הגעה ל-Hotel Zallina: כשמגיעים בכביש, הגשר נמצא משמאל למלון; להשתמש בכך כסימן זיהוי","בירידות להשתמש גם בבלימת מנוע ולא לרכב ברצף על הבלמים","🚗 אישור ההשכרה משותף לשני הזוגות ונשמר באפליקציה","☎️ Albania Pro Rent: +355 68 45 78 986"]},
+{"day":3,"date":"16.9","city":"ת׳ת · Blue Eye","en":"Blue Eye Theth Albania","icon":"💧","sleep":"Hotel Zallina · Theth","hotel":"Hotel Zallina","hotelQuery":"Hotel Zallina Theth Albania","parking":"חניה פרטית חינם; המלון אישר שיש חניה לאורחים","difficulty":"קל–בינוני","drive":"נסיעה קצרה + הליכה לעין הכחולה","plan":["ארוחת בוקר רגועה ב-Hotel Zallina","סביב 10:00 · יציאה ברכב לכיוון Nderlysa / חניית Blue Eye","חניה באזור Nderlysa","בחניה לבדוק אם פועל ג׳יפ/רכב מקומי בתשלום של כ־€5 שמקצר את ההליכה","אם ההקפצה פועלת — להשתמש בה ולחסוך ככל האפשר את קטע ההליכה","המשך רגלי לעין הכחולה בקצב רגוע","שהייה ארוכה ב-Blue Eye למנוחה, צילום והתרעננות","חזרה באותה הדרך לרכב","חזרה לת׳ת, ארוחת צהריים מאוחרת ומנוחה","אופציונלי אם נשאר כוח ומזג האוויר מתאים · Thethi Zipline"],"tips":["⚠️ Blue Eye הוא מסלול אופציונלי — מחליטים במקום לפי ההרגשה; אין חובה להגיע עד הסוף","Blue Eye היא האטרקציה היחידה המשובצת כרגע בלו״ז של היום; מפל Grunas נשאר ברשימת האטרקציות כאפשרות נפרדת ולא מתוכננת כרגע","שירות ההקפצה המקומי אינו מובטח; בודקים בחניה באותו בוקר","אם אין הקפצה, יש לקחת בחשבון הליכה של כ־40–50 דקות לכל כיוון","נעלי הליכה נוחות, מים וכובע","🪂 Thethi Zipline: אטרקציה אופציונלית בלבד; כבל באורך כ-1,200 מ׳, שני גולשים במקביל, מחיר מפורסם 2,500 לק לאדם — לבדוק זמינות במקום"]},
 {"day":4,"date":"17.9","city":"ת׳ת → שקודר / Rozafa → Fishtë → קומאן","en":"Koman Albania","icon":"🚙","sleep":"Koman Twin Cabins","hotel":"Koman Twin Cabins","hotelQuery":"Koman Twin Cabins Albania","parking":"חניה פרטית חינם; המלון אישר שיש חניה","difficulty":"קל-בינוני","drive":"יום מעבר עם עצירות · מסיימים בקומאן לפני החשיכה","plan":["08:00–08:45 · ארוחת בוקר וצ׳ק-אאוט ב-Hotel Zallina","09:00 · יציאה מת׳ת לכיוון שקודר","~11:15 · הגעה לכניסה לשקודר · עצירת SPAR קצרה של 15–20 דקות להצטיידות ליום השיט","11:45–13:00 · ביקור במצודת Rozafa","13:00 · יציאה לכיוון Fishtë","~14:15 · הגעה ל-Mrizi i Zanave והתארגנות","14:30–15:45/16:00 · 🍽️ Mrizi i Zanave · הזמנה מאושרת ל-4 אנשים","מיד בסיום הארוחה · יציאה ישירות לכיוון קומאן דרך Vau i Dejës","~17:30–18:00 · הגעה ל-Koman Twin Cabins","ערב · מנוחה וארוחה קלה בלבד לפי הצורך; למחרת שיט Shala"],"tips":["✅ Mrizi i Zanave מאושרת ל-17.9 בשעה 14:30 ל-4 אנשים","אם מגיעים ל-Rozafa אחרי 12:15 — מקצרים את הביקור במצודה ולא את Mrizi או את מרווח האור לנסיעה לקומאן","המסעדה דורשת סטייה מסוימת מהדרך הישירה לקומאן, ולכן לא מוסיפים עצירות מיותרות אחריה","את הקניות ליום השיט עושים ב-SPAR לפני המצודה","חשוב לצאת מ-Mrizi מיד בתום הארוחה, סביב 15:45–16:00, כדי לשמור מרווח לדרך לקומאן","🌅 ב-17.9 השקיעה באזור שקודר סביב 18:48; אם יוצאים מ-Mrizi אחרי 16:00 נוסעים ישירות לקומאן בלי עצירות אופציונליות","💶 Koman Twin Cabins: התשלום למלון במזומן בלבד — להכין מזומן מראש","אחרי הארוחה הגדולה ב-Mrizi אין צורך לתכנן ארוחת ערב מלאה בקומאן"]},
 {"day":5,"date":"18.9","city":"קומאן → Shala River → שקודר","en":"Shkoder Albania","icon":"🚤","sleep":"Hotel Chicago","hotel":"Hotel Chicago","hotelQuery":"Hotel Chicago Shkoder Albania","parking":"חניה פרטית חינם במיקום סמוך למלון; לפי אישור Booking אין צורך בהזמנה מראש","difficulty":"קל","drive":"יום שיט · אחר הצהריים נסיעה לשקודר","plan":["07:45–08:30 · ארוחת בוקר ב-Koman Twin Cabins","08:30 · יציאה לכיוון החניון של השיט","09:00 · התייצבות לשיט שהוזמן מראש","09:30 · יציאה בסירה ל-Shala River","10:45 בערך · הגעה ל-Shala River","10:45–14:00 · זמן חופשי רגוע ליד המים: הליכה קלה, קפה / ארוחה, צילום ומנוחה","14:00 · יציאה חזרה לכיוון קומאן","15:30 בערך · הגעה לקומאן ואיסוף הרכב","15:45–16:00 · יציאה ברכב לכיוון שקודר","17:30–18:00 בערך · הגעה ל-Hotel Chicago, חניה וצ׳ק-אין","18:30 ואילך · ערב רגוע במרכז שקודר ובמדרחוב Rruga Kolë Idromeno"],"tips":["השיט הוזמן ל-4 אנשים לתאריך 18.9 · סה״כ €80","אם לוח כללי ברשת מציג שעות אחרות — פועלים לפי אישור ההזמנה האישי שלנו: 09:00 התייצבות, 09:30 יציאה","התשלום במזומן בלבד לפני העלייה לסירה","להגיע לחניון עד 09:00 ולהיות מוכנים ליציאה ב-09:30","החניון הראשי נמצא כ-1 ק״מ מהמעגן ויש כ-10 דקות הליכה","קיימת גם אפשרות לחנות בחניון KAPAJ בתשלום","לקחת לשיט מים, כובע, קרם הגנה ונעליים נוחות","בספטמבר מפלס המים עשוי להיות נמוך ולעיתים נדרשת הליכה קצרה נוספת","את Rozafa Castle כבר מבקרים ביום הקודם — הערב בשקודר נשאר רגוע","🚗 Hotel Chicago: החניה היא חניה פרטית חינם במיקום סמוך למלון, לא בהכרח בכניסה למלון"]},
 {"day":6,"date":"19.9","city":"שקודר → Kukës → ואלבונה","en":"Valbona Albania","icon":"🏔️","sleep":"Valbone Two E","hotel":"Valbone Two E","hotelQuery":"Valbone Two E Albania","parking":"חניה פרטית חינם במקום","difficulty":"קל–בינוני","drive":"יום Road Trip נופי עם עצירות בדרך","plan":["08:00 · ארוחת בוקר ב-Hotel Chicago","08:45 · צ׳ק-אאוט ויציאה","09:00–09:30 · עצירת הצטיידות ב-SPAR, Rruga Martin Camaj, Shkodër","09:30 · יציאה לכיוון Pukë / Fushë-Arrëz","10:45–11:15 בערך · עצירת קפה ונוף באזור Pukë / Fushë-Arrëz","12:45–13:45 בערך · Kukës: ארוחת צהריים ותצפית קצרה","15:15 בערך · Bajram Curri: עצירת שירות קצרה, כספומט / תדלוק / השלמות","15:30 · המשך לעמק Valbona","16:15–17:00 בערך · הגעה ל-Valbone Two E, חניה וצ׳ק-אין","ערב · מנוחה, הליכה קצרה באזור וארוחת ערב"],"tips":["ב-SPAR להצטייד במים, פירות, חטיפים ומוצרים ליומיים בואלבונה","ב-Bajram Curri למשוך מזומן ב-Lek ולתדלק אם צריך לפני הכניסה לעמק","לא להמשיך עם הרכב השכור לדרכי עפר לכיוון Rragam","זהו יום מעבר נופי — אין צורך להעמיס אטרקציות נוספות","⏱️ זמני הנהיגה נטו שקודר→Kukës ועוד Kukës→Valbona הם בערך 4.5–5 שעות; הלו״ז הנוכחי סביר אך לא משאיר מקום לעיכובים ארוכים","אם יוצאים מ-Kukës אחרי 14:00 — מקצרים את עצירת Bajram Curri לשירותים/דלק בלבד כדי להגיע ל-Valbona באור יום"]},
 {"day":7,"date":"20.9","city":"ואלבונה","en":"Valbona Albania","icon":"🏔️","sleep":"Valbone Two E","hotel":"Valbone Two E","hotelQuery":"Valbone Two E Albania","parking":"חניה פרטית חינם במקום","difficulty":"קל–בינוני","drive":"יום טבע רגוע בעמק · מעט נהיגה","plan":["08:30–09:30 · ארוחת בוקר רגועה ב-Valbone Two E","10:00 · יציאה ליום טבע בעמק Valbona","10:00–13:00 · אפשרות מומלצת: ג׳יפ / רכב מקומי לכיוון Rragam והליכה לכיוון Rragam Waterfall בהתאם ליכולת","13:30–15:00 · ארוחת צהריים ומנוחה","15:00–16:00 · מנוחה במלון","16:00 · נסיעה / הליכה רגועה לאורך נהר Valbona ועצירה ב-Old Mill","17:00 · Xhema's Lake רק אם המקומיים אומרים שיש מספיק מים","19:00 · ארוחת ערב: בחירה ראשונה Rilindja Restaurant; חלופה AMZA Valbona – Sofra"],"tips":["לבקש מ-Valbone Two E בבוקר עזרה בארגון ג׳יפ / רכב מקומי לכיוון Rragam","ההליכה למפל Rragam היא קל–בינוני ולא חובה להשלים אותה; אפשר להסתובב בכל שלב","לא לנסוע עם הרכב השכור לדרכי העפר העליונות לכיוון Rragam","Xhema's Lake עונתי — לבדוק עם המקומיים אם יש מים לפני שנוסעים","לארוחת הערב כדאי לבדוק מקום מראש ב-Rilindja; AMZA היא חלופה מצוינת"]},
 {"day":8,"date":"21.9","city":"ואלבונה → Fierzë → קומאן → קרויה","en":"Kruje Albania","icon":"⛴️","sleep":"Hotel Kroi","hotel":"Hotel Kroi","hotelQuery":"Hotel Kroi Kruje Albania","parking":"חניה ציבורית סמוכה — המלון שלח מיקום; לשמור את הודעת המלון ולהגיע לפי ההנחיה שלו","difficulty":"קל–בינוני","drive":"מעבורת עם הרכב + נסיעה לקרויה","plan":["08:00–09:00 · ארוחת בוקר ב-Valbone Two E","09:30 · יציאה מ-Valbona לכיוון Fierzë","11:45–12:00 לכל המאוחר · הגעה ל-Fierzë Ferry Terminal והתארגנות עם הרכב","13:00 · מעבורת Fierzë → Koman · 4 נוסעים + רכב","15:30 בערך · הגעה ל-Koman","15:45–16:00 · יציאה לכיוון Krujë","18:30–19:00 בערך · הגעה ל-Hotel Kroi, חניה וצ׳ק-אין","ערב · ארוחת ערב מקומית טובה ומנוחה; את קרויה מטיילים למחרת בבוקר"],"tips":["🎫 כרטיס מעבורת מאושר: KMNLKFYB287881 · 4 נוסעים + רכב · €103.35 · שולם ב-PayPal","המעבורת: Fierzë → Koman · 21.9 · יציאה 13:00 · הגעה 15:30","לוח הזמנים הרשמי של Ferry Berisha מציג Fierzë → Koman בכל יום ב-13:00","האישור דורש להיות בטרמינל לפחות 40 דקות מראש; אנחנו מתכננים להגיע מוקדם יותר","המעבורת ל-21.9 מאושרת ושולמה מראש · כרטיס KMNLKFYB287881 שמור באפליקציה","⚠️ אגרת הנמל אינה כלולה במחיר הכרטיס — להכין מעט מזומן בנפרד","אם יש סתירה בין לוח אינטרנט כללי לבין הכרטיס האישי שלנו — הכרטיס האישי הוא המקור הקובע","המעבורת היא העוגן של היום — לא להוסיף עצירות מיותרות בדרך ל-Fierzë","להגיע לטרמינל לפחות שעה לפני ההפלגה עם הרכב","דגם הרכב מאושר כ-Hyundai Tucson 2025; לאחר קבלת הרכב ב-15.9 לשמור צילום של לוחית הרישוי לצורך המעבורת","Hotel Kroi שלח מיקום חניה לאורחים; החניה חינם עד הצ׳ק-אאוט","✅ Valbona→Fierzë הוא כ-40 ק״מ ובדרך כלל סביב שעה; יציאה ב-09:30 משאירה מרווח גדול לפני ההפלגה"]},
 {"day":9,"date":"22.9","city":"קרויה → דורס","en":"Durres Albania","icon":"🏰","sleep":"Bizant Boutique Hotel & Coffee Bar","hotel":"Bizant Boutique Hotel & Coffee Bar","hotelQuery":"Bizant Boutique Hotel Coffee Bar Durres Albania","parking":"חניה ציבורית חינם בסביבה, על בסיס מקום פנוי; לפרוק מזוודות במלון ואז לחנות","difficulty":"קל","drive":"כ-45–60 דקות מקרויה לדורס","plan":["08:00–09:00 · ארוחת בוקר ב-Hotel Kroi וצ׳ק-אאוט","09:15–09:45 · הבזאר הישן של קרויה · הליכה רגועה לכיוון המצודה","09:45–11:00 · מצודת קרויה ומוזיאון סקנדרבג (המוזיאון פתוח 09:00–19:00 בעונת מאי–אוקטובר)","11:00–12:15 · חזרה דרך הבזאר · קפה וקניות קטנות","12:30–13:30 · ארוחת צהריים קלה בקרויה","14:00 בערך · יציאה לכיוון Durrës","15:00 בערך · הגעה ל-Bizant Boutique Hotel & Coffee Bar, חניה וצ׳ק-אין","16:30–18:30 · מנוחה ואז טיול רגלי רגוע במרכז / באזור האמפיתיאטרון והטיילת; אם רוצים להיכנס לאמפיתיאטרון, לבדוק באותו יום את שעת הסגירה","לפני ארוחת הערב · קפה או אפריטיף ב-Bizant Coffee Bar שמתחת למלון","ערב · ארוחת ערב אלבנית מקומית במרחק נוח מהמרכז"],"tips":["אין צורך להזיז שוב את הרכב אחרי הצ׳ק-אין — המלון במיקום מרכזי מאוד","Bizant הוא בעיקר Coffee Bar ולא מסעדת ערב; מתאים לקפה או דרינק לפני היציאה","אם מתעייפים בקרויה, אפשר לוותר על חלק מהבזאר ולא להעמיס מוזיאון נוסף","בדורס משאירים את אחר הצהריים קליל: מרכז, ים/טיילת ושקיעה לפי מצב הרוח","Bizant במיקום מרכזי מאוד: האמפיתיאטרון במרחק הליכה קצר, ולכן אין צורך להזיז את הרכב אחרי הצ׳ק-אין"]},
-{"day":10,"date":"23.9","city":"דורס → הר דייטי → טיראנה","en":"Tirana Albania","icon":"🚡","sleep":"F&M Hotel 2","hotel":"F&M Hotel 2","hotelQuery":"F&M Hotel 2 Tirana Albania","parking":"חניה פרטית חינם במקום","difficulty":"קל","drive":"דורס → Dajti Ekspres → המלון בטיראנה","plan":["08:30–09:30 · ארוחת בוקר ב-Bizant בדורס וצ׳ק-אאוט","09:45 · יציאה מדורס ישירות לתחנה התחתונה של Dajti Ekspres","11:00–13:30 בערך · רכבל להר דייטי · תצפיות, הליכה קלה וקפה; ללא מסלול לפסגה","14:00–14:30 בערך · נסיעה ל-F&M Hotel 2, צ׳ק-אין והשארת הרכב בחניה","15:30–16:00 · כיכר סקנדרבג ומסגד Et'hem Bey","16:00–16:35 · Bunk’Art 2 מבחוץ; כניסה רק אם מתחשק ויש זמן","16:45–17:30 · הפירמידה של טיראנה ועלייה לתצפית לפי היכולת","18:00 ואילך · שיטוט רגוע ב-Blloku, קפה/דרינק וארוחת ערב"],"tips":["Dajti Ekspres הוא אתר החובה של היום; לא מתכננים הליכה מאומצת על ההר","נוסעים מדורס ישירות לרכבל כדי להימנע מכניסה כפולה למרכז טיראנה","לאחר הצ׳ק-אין משאירים את הרכב במלון ועוברים למרכז ברגל/מונית לפי הנוחות","Bunk’Art 2 אופציונלי בלבד — לא מעמיסים מוזיאונים ביום האחרון","מסגד Et’hem Bey פתוח לביקורי תיירים ביום רביעי 09:00–12:00 ו-14:00–16:00 (למעט זמני תפילה), לכן חשוב לסיים את הביקור עד 16:00","לבדוק בבוקר את מזג האוויר והראות בהר דייטי; בעננות כבדה אפשר להפוך את סדר היום","Dajti Ekspres פתוח ביום רביעי 23.9 לפי לוח הפעילות הנוכחי; שעות אמצע שבוע 09:00–18:30","לארוחת ערב: Mullixhiu לחוויית סיום מיוחדת — מומלץ להזמין מקום מראש; Era Blloku לחלופה נוחה בלב אזור הבילויים"]},
+{"day":10,"date":"23.9","city":"דורס → הר דייטי → טיראנה","en":"Tirana Albania","icon":"🚡","sleep":"F&M Hotel 2","hotel":"F&M Hotel 2","hotelQuery":"F&M Hotel 2 Tirana Albania","parking":"חניה פרטית חינם במקום","difficulty":"קל","drive":"דורס → Dajti Ekspres → המלון בטיראנה","plan":["08:30–09:30 · ארוחת בוקר ב-Bizant בדורס וצ׳ק-אאוט","09:45 · יציאה מדורס ישירות לתחנה התחתונה של Dajti Ekspres","11:00–13:30 בערך · רכבל להר דייטי · תצפיות, הליכה קלה וקפה; ללא מסלול לפסגה","14:00–14:30 בערך · נסיעה ל-F&M Hotel 2, צ׳ק-אין והשארת הרכב בחניה","15:30–16:00 · כיכר סקנדרבג ומסגד Et'hem Bey","16:00–16:35 · Bunk’Art 2 מבחוץ; כניסה רק אם מתחשק ויש זמן","16:45–17:30 · הפירמידה של טיראנה ועלייה לתצפית לפי היכולת","18:00 ואילך · שיטוט רגוע ב-Blloku, קפה/דרינק וארוחת ערב","לארוחת ערב ב-Ujvara: אם מגיעים ברכב, חניה מומלצת ב-Tirana Parking - Stadiumi Dinamo הסמוכה"],"tips":["Dajti Ekspres הוא אתר החובה של היום; לא מתכננים הליכה מאומצת על ההר","נוסעים מדורס ישירות לרכבל כדי להימנע מכניסה כפולה למרכז טיראנה","לאחר הצ׳ק-אין משאירים את הרכב במלון ועוברים למרכז ברגל/מונית לפי הנוחות","Bunk’Art 2 אופציונלי בלבד — לא מעמיסים מוזיאונים ביום האחרון","מסגד Et’hem Bey פתוח לביקורי תיירים ביום רביעי 09:00–12:00 ו-14:00–16:00 (למעט זמני תפילה), לכן חשוב לסיים את הביקור עד 16:00","לבדוק בבוקר את מזג האוויר והראות בהר דייטי; בעננות כבדה אפשר להפוך את סדר היום","Dajti Ekspres פתוח ביום רביעי 23.9 לפי לוח הפעילות הנוכחי; שעות אמצע שבוע 09:00–18:30","לארוחת ערב: Ujvara Resto Lounge & Gourmet נוספה כאופציה מומלצת; Mullixhiu לחוויית סיום מיוחדת — מומלץ להזמין מקום מראש; Era Blloku לחלופה נוחה בלב אזור הבילויים","🚗 אם נוסעים ל-Ujvara ברכב: Tirana Parking - Stadiumi Dinamo היא חניה נוחה בסביבה"]},
 {"day":11,"date":"24.9","city":"טיראנה → שדה התעופה → תל אביב","en":"Tirana International Airport Albania","icon":"✈️","sleep":"הביתה","hotel":"—","hotelQuery":"Tirana International Airport Albania","parking":"החזרת הרכב השכור בשדה התעופה","difficulty":"קל","drive":"כ-30–45 דקות מהמלון לשדה; להשאיר מרווח לתנועה ולהחזרת הרכב","plan":["06:45–07:30 · ארוחת בוקר מוקדמת אם זמינה ב-F&M Hotel 2 וצ׳ק-אאוט; לבדוק ערב קודם","07:30 · יציאה מהמלון לכיוון Tirana International Airport","בדרך / סמוך לשדה · תדלוק אחרון לפי תנאי חברת ההשכרה","08:15 בערך · הגעה לאזור השדה והחזרת הרכב השכור","08:30–08:45 · כניסה לטרמינל לאחר החזרת הרכב","08:45 · יעד להיות בתוך הטרמינל · כ-3 שעות לפני ההמראה","11:45 · המראת ישראייר 6H162 מטיראנה","15:30 · נחיתה בתל אביב"],"tips":["לצלם את הרכב מכל הצדדים, את מד הדלק ואת הקילומטראז׳ לפני המסירה","לא להשאיר תדלוק לרגע האחרון אם תחנת הדלק הקרובה עמוסה","להכין בערב דרכונים, מסמכי הטיסה ואישור/פרטי החזרת הרכב","ביום הטיסה לא מתכננים אטרקציות או קניות — המטרה היא להגיע לשדה בנחת","☎️ Albania Pro Rent: +355 68 45 78 986"]}]; let selected=0,tab='home';
 const tabs=[['home','🏠','בית'],['today','☀️','היום'],['plan','🗓️','תכנון'],['attr','🏰','אטרקציות'],['docs','📎','אישורים'],['tools','🧰','כלים'],['food','🍜','אוכל'],['near','📍','סביבי'],['lang','🗣️','אלבנית'],['web','🌐','המלצות']];
-const attractions=[['ת׳ת','⛪','כנסיית ת׳ת','קל'],['ת׳ת','📸','Qafë e Thorës','קל'],['ת׳ת','🌊','מפל גרונאס','בינוני'],['ת׳ת','💧','העין הכחולה','בינוני'],['שקודר','🏰','מצודת Rozafa','קל–בינוני'],['קומאן','🚤','אגם קומאן','קל'],['קומאן','💎','נהר שאלה','קל'],['ואלבונה','🏔️','עמק ואלבונה','קל'],['ואלבונה','🌊','מפל Rragam','קל–בינוני'],['ואלבונה','🏚️','Old Mill','קל'],['ואלבונה','💧',"Xhema's Lake",'קל'],['קרויה','🛍️','הבזאר הישן של קרויה','קל'],['קרויה','🏰','מצודת קרויה','קל–בינוני'],['קרויה','🖼️','מוזיאון סקנדרבג','קל'],['דורס','🏛️','האמפיתיאטרון של דורס','קל'],['דורס','🌊','טיילת דורס','קל מאוד'],['טירנה','🚡','Dajti Ekspres','קל'],['טירנה','🏙️','כיכר סקנדרבג','קל'],['טירנה','🕌',"מסגד Et'hem Bey",'קל'],['טירנה','🕳️','Bunk’Art 2','קל'],['טירנה','🔺','הפירמידה של טירנה','קל']];
+const attractions=[['ת׳ת','⛪','כנסיית ת׳ת','קל'],['ת׳ת','📸','Qafë e Thorës','קל'],['ת׳ת','🌊','מפל גרונאס','בינוני'],['ת׳ת','💧','העין הכחולה','בינוני'],['ת׳ת','🪂','Thethi Zipline','קל–אדרנלין'],['שקודר','🏰','מצודת Rozafa','קל–בינוני'],['קומאן','🚤','אגם קומאן','קל'],['קומאן','💎','נהר שאלה','קל'],['ואלבונה','🏔️','עמק ואלבונה','קל'],['ואלבונה','🌊','מפל Rragam','קל–בינוני'],['ואלבונה','🏚️','Old Mill','קל'],['ואלבונה','💧',"Xhema's Lake",'קל'],['קרויה','🛍️','הבזאר הישן של קרויה','קל'],['קרויה','🏰','מצודת קרויה','קל–בינוני'],['קרויה','🖼️','מוזיאון סקנדרבג','קל'],['דורס','🏛️','האמפיתיאטרון של דורס','קל'],['דורס','🌊','טיילת דורס','קל מאוד'],['טירנה','🚡','Dajti Ekspres','קל'],['טירנה','🏙️','כיכר סקנדרבג','קל'],['טירנה','🕌',"מסגד Et'hem Bey",'קל'],['טירנה','🕳️','Bunk’Art 2','קל'],['טירנה','🔺','הפירמידה של טירנה','קל']];
 function title(e,t,d){return `<div class="sectionTitle"><small>${e}</small><h2>${t}</h2><p>${d}</p></div>`}
 function renderNav(){nav.innerHTML=tabs.map(x=>`<button class="${tab===x[0]?'active':''}" onclick="tab='${x[0]}';render()">${x[1]} ${x[2]}</button>`).join('')}
 function home(){
@@ -112,6 +112,8 @@ const documents=[
   {owner:'orit',type:'🏨',title:'F&M Hotel 2',sub:'23.9 · טיראנה',file:'docs/orit_israel_fm2_23sep.pdf',days:[10]},
 
   // משותף
+  {owner:'shared',type:'🚆',title:'רכבת ישראל 165 · הגעה לנתב״ג',sub:'14.9 · קריית מוצקין 12:32 · בנימינה 13:26 · נתב״ג 14:20 · ללא החלפה',file:'docs/train_165_14sep.png',days:[1]},
+  {owner:'shared',type:'🍽️',title:'Mrizi i Zanave · אישור הזמנה',sub:'17.9 · 14:30 · 4 אנשים · ✅ מאושר',file:'docs/mrizi_confirmation_full_17sep.png',website:'https://www.mrizizanave.al/',days:[4]},
   {owner:'shared',type:'🚗',title:'Albania Pro Rent · אישור רכב',sub:'15–24.9 · Hyundai Tucson 2025 · אוטומטי · €882',file:'docs/albania_pro_rent_15-24sep.pdf',days:[2,11]},
   {owner:'shared',type:'🚤',title:'Shala River · אישור הזמנה',sub:'18.9 · 4 אנשים · €80',file:'docs/shala_booking_18sep.png',days:[5]},
   {owner:'shared',type:'⛴️',title:'כרטיס מעבורת · Fierzë → Koman',sub:'21.9 · 13:00 · KMNLKFYB287881 · 4 נוסעים + רכב',file:'docs/ferry_fierze_koman_21sep.pdf',days:[8]}
@@ -141,7 +143,7 @@ function dayDocumentsCard(d){
     return `<div style="margin-top:10px">
       <b style="display:block;margin-bottom:7px">${ownerMeta[owner].icon} ${ownerMeta[owner].label}</b>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        ${items.map(x=>`<a class="btn" target="_blank" rel="noopener" href="${docViewerUrl(x)}">${x.type} ${x.title}</a>`).join('')}
+        ${items.map(x=>`<a class="btn" target="_blank" rel="noopener" href="${docViewerUrl(x)}">${x.type} ${x.title}</a>${x.website?`<a class="btn" target="_blank" rel="noopener" href="${x.website}">🌐 אתר רשמי</a>`:''}`).join('')}
       </div>
     </div>`;
   }).join('');
@@ -174,7 +176,7 @@ function docsTab(){
     ${docOwnerBadge(x.owner)}
     <h3>${x.title}</h3>
     <p>${x.sub}</p>
-    <a class="btn" target="_blank" rel="noopener" href="${docViewerUrl(x)}">📄 הצג אישור</a>
+    <a class="btn" target="_blank" rel="noopener" href="${docViewerUrl(x)}">📄 הצג אישור</a>${x.website?`<a class="btn" target="_blank" rel="noopener" href="${x.website}">🌐 אתר רשמי</a>`:''}
   </div>`).join('')}</div>`;
 }
 
@@ -182,6 +184,12 @@ const placeQueries = {
   'קרויה':'Kruje Albania',
   'בזאר קרויה':'Old Bazaar Kruje Albania',
   'מצודת קרויה':'Kruje Castle Albania',
+  'SPAR':'SPAR Shkoder Albania',
+  'Koplik':'Koplik Albania',
+  'Bogë':'Boge Albania',
+  'Qafë e Thorës':'Qafe e Thores Albania',
+  'Buni i Bajraktarit':'Buni i Bajraktarit Qafe Thore Albania',
+  'Te Lumi':'Te Lumi Albania',
   'ת׳ת':'Theth Albania',
   'כנסיית ת׳ת':'Theth Church Albania',
   'הכנסייה העתיקה':'Theth Church Albania',
@@ -225,14 +233,19 @@ function linkPlaces(text){
 function specialActions(d){
   let buttons = [];
   if(d.day===2){
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('SPAR Shkoder Albania')}">🛒 SPAR · הצטיידות</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Koplik Albania')}">☕ Koplik</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('gas station Koplik Albania')}">⛽ תדלוק Koplik</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Boge Albania')}">🏔️ Bogë</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Qafe e Thores Albania')}">📸 Qafë e Thorës</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Buni i Bajraktarit Qafe Thore Albania')}">☕ Buni i Bajraktarit</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Te Lumi Albania')}">🍺 Te Lumi</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Hotel Zallina Theth Albania')}">🏨 Hotel Zallina</a>`);
   }
   if(d.day===3){
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Blue Eye Theth parking Albania')}">🅿️ חניית Blue Eye</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Nderlysa Theth Albania')}">🅿️ Nderlysa · חניה ותחילת המסלול ל-Blue Eye</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Thethi Zipline Albania')}">🪂 Thethi Zipline</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Hotel Zallina Theth Albania')}">🏨 Hotel Zallina</a>`);
   }
   if(d.day===4){
@@ -285,6 +298,8 @@ function specialActions(d){
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('BunkArt 2 Tirana Albania')}">🕳️ Bunk’Art 2</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Pyramid of Tirana Albania')}">🔺 הפירמידה</a>`);
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Blloku Tirana Albania')}">🌆 Blloku</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Tirana Parking Stadiumi Dinamo Albania')}">🅿️ Tirana Parking</a>`);
+    buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Ujvara Resto Lounge Gourmet Tirana Albania')}">🍽️ Ujvara</a>`);
   }
   if(d.day===11){
     buttons.push(`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Tirana International Airport Albania')}">✈️ שדה התעופה TIA</a>`);
@@ -347,7 +362,7 @@ function earlyDaysRestaurantsCard(d){
     },
     2:{
       title:'ארוחת ערב · ת׳ת',
-      a:'Gjecaj Restaurant',
+      a:'Gjeçaj Alpine Restaurant (Alpine)',
       ad:'מטבח אלבני-אלפיני מסורתי בלב ת׳ת, עם גבינות ביתיות, בשרים, פורל ומנות אפויות מחומרי גלם מקומיים. בחירה טובה לערב הראשון בכפר. שעות הערב המפורסמות: 18:00–21:30.',
       aq:'Gjecaj Restaurant Theth Albania', ap:'+355672046333',
       b:'Thethi Paradise Restaurant',
@@ -356,7 +371,7 @@ function earlyDaysRestaurantsCard(d){
     },
     3:{
       title:'ארוחת ערב · ת׳ת',
-      a:'Gjecaj Restaurant',
+      a:'Gjeçaj Alpine Restaurant (Alpine)',
       ad:'אוכל הרים מקומי ואותנטי — גבינות, בשרים, פורל ומנות צפון-אלבניות. מתאים במיוחד אחרי יום Blue Eye. שעות הערב המפורסמות: 18:00–21:30.',
       aq:'Gjecaj Restaurant Theth Albania', ap:'+355672046333',
       b:'Thethi Paradise Restaurant',
@@ -384,6 +399,7 @@ function earlyDaysRestaurantsCard(d){
   };
   const x=data[d.day]; if(!x) return '';
   const phone=p=>p?`<a class="btn" href="tel:${p}">📞 טלפון</a>`:'';
+  const alpet=(d.day===2||d.day===3)?`<h3 style="margin:12px 0 7px">אפשרות נוספת · Hotel Restaurant Alpet Theth</h3><p style="margin:0;line-height:1.65">מסעדת הרים מקומית במרכז ת׳ת, עם מרפסת עץ ונוף יפה לעמק ולפסגות. מתאימה לבשרים, japrak, byrek ומנות אלבניות-אלפיניות. טלפון: +355 69 459 0407.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Hotel Restaurant Alpet Theth Albania')}">🍽️ Alpet Theth · ניווט</a><a class="btn" href="tel:+355694590407">📞 Alpet</a></div>`:'';
   return `<div style="margin:16px 0;padding:16px;border:1px solid #dce5e8;border-radius:18px;background:#fffdf6">
     <small style="color:#60717a">🍽️ ${x.title}</small>
     <h3 style="margin:7px 0">בחירה ראשונה · ${x.a}</h3>
@@ -394,6 +410,7 @@ function earlyDaysRestaurantsCard(d){
       <a class="btn" target="_blank" rel="noopener" href="${mapsUrl(x.aq)}">🍽️ ${x.a} · ניווט</a>${phone(x.ap)}
       <a class="btn" target="_blank" rel="noopener" href="${mapsUrl(x.bq)}">🍴 ${x.b} · ניווט</a>${phone(x.bp)}
     </div>
+    ${alpet}
   </div>`;
 }
 
@@ -413,6 +430,7 @@ function komanRouteRestaurantActions(d){
   return `<div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px">
     <a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Mrizi i Zanave Agroturizem Fishte Lezhe Albania')}">🍽️ Mrizi i Zanave · ניווט</a>
     <a class="btn" href="tel:+355692108032">📞 Mrizi · הזמנה</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.mrizizanave.al/">🌐 האתר הרשמי</a>
     <a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Restorant Perla Vau i Dejes Albania')}">🍴 Perla · ניווט</a>
     <a class="btn" href="tel:+355693543605">📞 Perla</a>
   </div>`;
@@ -492,6 +510,8 @@ function tiranaRestaurantsCard(d){
   return `
     <div style="margin:16px 0;padding:16px;border:1px solid #dce5e8;border-radius:18px;background:#fffdf6">
       <small style="color:#60717a">🍽️ ארוחת ערב בטיראנה · יעד כ־€25 לאדם</small>
+      <h3 style="margin:7px 0">אפשרות מומלצת נוספת · Ujvara Resto Lounge & Gourmet</h3>
+      <p style="margin:0 0 12px;line-height:1.65">מסעדה ותיקה ומוערכת ליד Stadiumi Dinamo, עם תפריט רחב הכולל מנות אלבניות, ים-תיכוניות ואירופאיות. אם מגיעים ברכב, Tirana Parking - Stadiumi Dinamo היא נקודת חניה נוחה בסביבה. פתוחה לפי המידע העדכני 07:00–23:00. טלפון: +355 67 204 4770.</p>
       <h3 style="margin:7px 0">בחירה ראשונה · Mullixhiu</h3>
       <p style="margin:0 0 12px;line-height:1.65">בחירה מיוחדת לערב האחרון: מטבח אלבני מסורתי בפרשנות מודרנית, חומרי גלם מקומיים ואווירה ברמה גבוהה. שירות הערב 18:00–22:00. היא ליד האגם המלאכותי ולא ממש בתוך Blloku, ולכן אם בוחרים בה נגיע אליה במונית/נסיעה קצרה. מומלץ להזמין מקום מראש.</p>
       <h3 style="margin:7px 0">חלופה · Era Blloku</h3>
@@ -501,6 +521,9 @@ function tiranaRestaurantsCard(d){
 function tiranaRestaurantActions(d){
   if(d.day!==10) return '';
   return `<div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px">
+    <a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Ujvara Resto Lounge Gourmet Tirana Albania')}">🍽️ Ujvara · ניווט</a>
+    <a class="btn" href="tel:+355672044770">📞 Ujvara</a>
+    <a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Tirana Parking Stadiumi Dinamo Albania')}">🅿️ Tirana Parking</a>
     <a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Mullixhiu Tirana Albania')}">🍽️ Mullixhiu · ניווט</a>
     <a class="btn" href="tel:+355696660444">📞 Mullixhiu</a>
     <a class="btn" target="_blank" rel="noopener" href="${mapsUrl('Era Blloku Tirana Albania')}">🍷 Era Blloku · ניווט</a>
@@ -638,15 +661,15 @@ if(d.day===1){
 
         <div>
           <div style="font-size:21px;font-weight:900">
-            ✈️ היום טסים לאלבניה
+            🚆 רכבת לנתב״ג · ✈️ היום טסים לאלבניה
           </div>
 
           <div style="
             margin-top:7px;
             font-size:16px;
             line-height:1.7">
-            <b>ישראייר 6H 163</b><br>
-            17:20 נתב״ג → 19:15 טירנה
+            <b>רכבת 165</b> · מוצקין 12:32 → בנימינה 13:26 → נתב״ג 14:20<br>
+            <b>ישראייר 6H 163</b> · 17:20 נתב״ג → 19:15 טירנה
           </div>
         </div>
 
@@ -714,7 +737,7 @@ if(d.day===1){
       <div style="${baseStyle}">
         <div style="font-size:30px">⛰️</div>
         <h2 style="margin:5px 0;color:white">היום עולים לת׳ת</h2>
-        <div>09:00 יציאה · Koplik · Qafë e Thorës · Hotel Zallina</div>
+        <div>09:00 יציאה · SPAR להצטיידות · Koplik תדלוק · Bogë · Qafë e Thorës / Buni · Hotel Zallina</div>
       </div>
     `;
   }
