@@ -1,4 +1,4 @@
-const CACHE='albania-2026-v30';
+const CACHE='albania-2026-v31';
 const ASSETS=[
   "./robots.txt",
   "./apple-touch-icon.png",
@@ -78,7 +78,11 @@ const ASSETS=[
   "./previews/orit_israel_koman_twin_cabins_17sep/page-1.webp",
   "./previews/orit_israel_koman_twin_cabins_17sep/page-2.webp",
   "./previews/orit_israel_valbone_two_e_19-21sep/page-1.webp",
-  "./previews/valbone_two_e_19-21sep/page-1.webp"
+  "./previews/valbone_two_e_19-21sep/page-1.webp",
+  "./docs/passportcard_ariew_drorit_14-24sep.pdf",
+  "./previews/passportcard_ariew_drorit_14-24sep/page-1.webp",
+  "./previews/passportcard_ariew_drorit_14-24sep/page-2.webp",
+  "./previews/passportcard_ariew_drorit_14-24sep/page-3.webp",
 ];
 self.addEventListener('install',event=>{event.waitUntil((async()=>{const c=await caches.open(CACHE);await Promise.all(ASSETS.map(async a=>{try{await c.add(a);}catch(e){console.warn('Cache skip',a,e);}}));await self.skipWaiting();})());});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
