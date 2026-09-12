@@ -5,7 +5,7 @@
 </style><style>.flights{margin-bottom:18px}.flights h3{font-size:23px;margin:0 0 13px}.flightGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.flightCard{background:white;border:1px solid #dce5e8;border-radius:23px;padding:20px}.flightHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}.flightHead h4{font-size:20px;margin:4px 0}.flightCode{direction:ltr;background:#eef8f2;color:#197345;border-radius:999px;padding:7px 10px;font-weight:900;white-space:nowrap}.flightRoute{font-size:18px;font-weight:900;margin-bottom:13px}.flightDetails{display:grid;gap:8px;color:#52636c}.countdownWrap{margin-top:17px;padding-top:16px;border-top:1px solid #e4eaec}.countdownWrap b{display:block;margin-bottom:10px}.countdown{direction:ltr;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.countdownBox{background:#10212b;color:white;border-radius:16px;padding:11px 6px;text-align:center}.countdownBox strong{display:block;font-size:24px;line-height:1}.countdownBox span{display:block;color:#ffffffb5;font-size:12px;margin-top:6px}@media(max-width:760px){.flightGrid{grid-template-columns:1fr}.flightCard{padding:18px}.countdownBox strong{font-size:21px}}</style></head><body><header><div class="wrap"><div class="eyebrow">ULTIMATE TRIP COMPANION</div><h1>אלבניה 2026 🇦🇱</h1><p>המסלול שלנו + המלצות + מפות + כלים לדרך</p><div class="chips"><span class="chip">14.9–24.9</span><span class="chip">10 לילות</span><span class="chip">רינאס · ת׳ת · קומאן · שקודר · ואלבונה · קרויה · דורס · טירנה</span><span class="chip" id="netStatus">בודק חיבור…</span><button class="searchTop" aria-label="חיפוש באפליקציה" title="חיפוש באפליקציה" onclick="openSearch()">🔍</button></div><div class="nav" id="nav"></div></div></header><main class="wrap"><div id="app"></div></main>
 <button class="homeFab" aria-label="חזרה לבית" title="חזרה לבית" onclick="goHome()">🏠</button>
 <div class="searchOverlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()"><div class="searchPanel" role="dialog" aria-modal="true" aria-label="חיפוש באפליקציה"><div class="searchHead"><input id="globalSearch" class="searchInput" type="search" placeholder="חפש מקום, אטרקציה, מסעדה, אישור..." autocomplete="off" oninput="runSearch(this.value)"><button class="searchClose" aria-label="סגור" onclick="closeSearch()">×</button></div><div id="searchResults"><div class="note">לדוגמה: מצודת Rozafa, Mrizi, שקודר, רכבת 165...</div></div></div></div>
-<footer>אלבניה 2026 · V34 · עודכן 12.9.2026 · Ultimate Trip Companion</footer>
+<footer>אלבניה 2026 · V36 · עודכן 12.9.2026 · Ultimate Trip Companion</footer>
 <script>
 const days=[
 {"day":1,"date":"14.9","city":"נחיתה בטירנה → רינאס","en":"Hotel Muja Rinas Albania","icon":"✈️","sleep":"Hotel Muja · Rinas","hotel":"Hotel Muja","hotelQuery":"Hotel Muja Rinas Albania","parking":"חניה פרטית חינם לפי ההזמנה; נשלח למלון אישור נוסף","difficulty":"קל מאוד","drive":"נסיעה קצרה מהשדה","plan":["🚆 רכבת ישראל 165 · יציאה מקריית מוצקין 12:32 · עצירה בבנימינה 13:26 · הגעה לנתב״ג 14:20 · ללא החלפה · משותף לכולנו","טיסת ישראייר 6H 163 · המראה 17:20 מנתב״ג טרמינל 1 · נחיתה בטירנה 19:15","איסוף מזוודות → יציאה מאולם הנחיתות → משרד מוניות שדה התעופה → בקשה ל-Transfer to Hotel Muja Rinas","הסעה חינם מטעם Hotel Muja למלון; הרכב השכור יימסר במלון בבוקר 15.9","ארוחת ערב והתארגנות לשינה"],"tips":["לצאת בזמן לתחנת קריית מוצקין · רכבת 165 יוצאת 12:32 ומגיעה לנתב״ג 14:20","לא מתכננים אטרקציות בערב הנחיתה","🚕 לאחר היציאה מאולם הנחיתות לגשת למשרד מוניות שדה התעופה ולבקש Transfer to Hotel Muja Rinas — ההסעה חינם","הרכב השכור אינו נאסף בלילה; הוא יימסר ב-Hotel Muja בבוקר 15.9"]},
@@ -20,7 +20,7 @@ const days=[
 {"day":10,"date":"23.9","city":"דורס → הר דייטי → טיראנה","en":"Tirana Albania","icon":"🚡","sleep":"F&M Hotel 2","hotel":"F&M Hotel 2","hotelQuery":"F&M Hotel 2 Tirana Albania","parking":"חניה פרטית חינם במקום","difficulty":"קל","drive":"דורס → Dajti Ekspres → המלון בטיראנה","plan":["08:30–09:30 · ארוחת בוקר ב-Bizant בדורס וצ׳ק-אאוט","09:45 · יציאה מדורס ישירות לתחנה התחתונה של Dajti Ekspres","11:00–13:30 בערך · רכבל להר דייטי · תצפיות, הליכה קלה וקפה; ללא מסלול לפסגה","14:00–14:30 בערך · נסיעה ל-F&M Hotel 2, צ׳ק-אין והשארת הרכב בחניה","15:30–16:00 · כיכר סקנדרבג ומסגד Et'hem Bey","16:00–16:35 · Bunk’Art 2 מבחוץ; כניסה רק אם מתחשק ויש זמן","16:45–17:30 · הפירמידה של טיראנה ועלייה לתצפית לפי היכולת","18:00 ואילך · שיטוט רגוע ב-Blloku, קפה/דרינק וארוחת ערב","לארוחת ערב ב-Ujvara: אם מגיעים ברכב, חניה מומלצת ב-Tirana Parking - Stadiumi Dinamo הסמוכה"],"tips":["Dajti Ekspres הוא אתר החובה של היום; לא מתכננים הליכה מאומצת על ההר","נוסעים מדורס ישירות לרכבל כדי להימנע מכניסה כפולה למרכז טיראנה","לאחר הצ׳ק-אין משאירים את הרכב במלון ועוברים למרכז ברגל/מונית לפי הנוחות","Bunk’Art 2 אופציונלי בלבד — לא מעמיסים מוזיאונים ביום האחרון","מסגד Et’hem Bey פתוח לביקורי תיירים ביום רביעי 09:00–12:00 ו-14:00–16:00 (למעט זמני תפילה), לכן חשוב לסיים את הביקור עד 16:00","לבדוק בבוקר את מזג האוויר והראות בהר דייטי; בעננות כבדה אפשר להפוך את סדר היום","Dajti Ekspres פתוח ביום רביעי 23.9 לפי לוח הפעילות הנוכחי; שעות אמצע שבוע 09:00–18:30","לארוחת ערב: Ujvara Resto Lounge & Gourmet נוספה כאופציה מומלצת; Mullixhiu לחוויית סיום מיוחדת — מומלץ להזמין מקום מראש; Era Blloku לחלופה נוחה בלב אזור הבילויים","🚗 אם נוסעים ל-Ujvara ברכב: Tirana Parking - Stadiumi Dinamo היא חניה נוחה בסביבה"]},
 {"day":11,"date":"24.9","city":"טיראנה → שדה התעופה → תל אביב","en":"Tirana International Airport Albania","icon":"✈️","sleep":"הביתה","hotel":"—","hotelQuery":"Tirana International Airport Albania","parking":"החזרת הרכב השכור בשדה התעופה","difficulty":"קל","drive":"כ-30–45 דקות מהמלון לשדה; להשאיר מרווח לתנועה ולהחזרת הרכב","plan":["06:45–07:30 · ארוחת בוקר מוקדמת אם זמינה ב-F&M Hotel 2 וצ׳ק-אאוט; לבדוק ערב קודם","07:30 · יציאה מהמלון לכיוון Tirana International Airport","בדרך / סמוך לשדה · תדלוק אחרון לפי תנאי חברת ההשכרה","08:15 בערך · הגעה לאזור השדה והחזרת הרכב השכור","08:30–08:45 · כניסה לטרמינל לאחר החזרת הרכב","08:45 · יעד להיות בתוך הטרמינל · כ-3 שעות לפני ההמראה","11:45 · המראת ישראייר 6H162 מטיראנה","15:30 · נחיתה בתל אביב"],"tips":["לצלם את הרכב מכל הצדדים, את מד הדלק ואת הקילומטראז׳ לפני המסירה","לא להשאיר תדלוק לרגע האחרון אם תחנת הדלק הקרובה עמוסה","להכין בערב דרכונים, מסמכי הטיסה ואישור/פרטי החזרת הרכב","ביום הטיסה לא מתכננים אטרקציות או קניות — המטרה היא להגיע לשדה בנחת","☎️ Albania Pro Rent: +355 68 45 78 986"]}]; const _params=new URLSearchParams(location.search); let selected=Math.max(0,Math.min(days.length-1,Number(_params.get('day')||1)-1)); let tab=['home','today','plan','attr','docs','tools','food','near','lang','web'].includes(_params.get('tab'))?_params.get('tab'):'home';
 const tabs=[['home','🏠','בית'],['today','☀️','היום'],['plan','🗓️','תכנון'],['attr','🏰','אטרקציות'],['docs','📎','אישורים'],['tools','🧰','כלים'],['food','🍜','אוכל'],['near','📍','סביבי'],['lang','🗣️','אלבנית'],['web','🌐','המלצות']];
-const attractions=[['ת׳ת','⛪','כנסיית ת׳ת','קל'],['ת׳ת','📸','Qafë e Thorës','קל'],['ת׳ת','🌊','מפל גרונאס','בינוני'],['ת׳ת','💧','העין הכחולה','בינוני'],['ת׳ת','🪂','Thethi Zipline','קל–אדרנלין'],['ת׳ת','🚌','Bus Stop · Theth','קל'],['שקודר','🏰','מצודת Rozafa','קל–בינוני'],['שקודר','🌉','גשר מסי · Mesi Bridge','קל'],['קומאן','🚤','אגם קומאן','קל'],['קומאן','💎','נהר שאלה','קל'],['ואלבונה','🏔️','עמק ואלבונה','קל'],['ואלבונה','🌊','מפל Rragam','קל–בינוני'],['ואלבונה','🏚️','Old Mill','קל'],['ואלבונה','💧',"Xhema's Lake",'קל'],['קרויה','🛍️','הבזאר הישן של קרויה','קל'],['קרויה','🏰','מצודת קרויה','קל–בינוני'],['קרויה','🖼️','מוזיאון סקנדרבג','קל'],['דורס','🏛️','האמפיתיאטרון של דורס','קל'],['דורס','🌊','טיילת דורס','קל מאוד'],['טירנה','🚡','Dajti Ekspres','קל'],['טירנה','🏙️','כיכר סקנדרבג','קל'],['טירנה','🕌',"מסגד Et'hem Bey",'קל'],['טירנה','🕳️','Bunk’Art 2','קל'],['טירנה','🔺','הפירמידה של טירנה','קל']];
+const attractions=[['ת׳ת','⛪','כנסיית ת׳ת','קל'],['ת׳ת','📸','Qafë e Thorës','קל'],['ת׳ת','🌊','מפל גרונאס','בינוני'],['ת׳ת','💧','העין הכחולה','בינוני'],['ת׳ת','🪂','Thethi Zipline','קל–אדרנלין'],['ת׳ת','🚌','Bus Stop · Theth','קל'],['שקודר','🏰','מצודת Rozafa','קל–בינוני'],['שקודר','🌉','גשר מסי · Mesi Bridge','קל'],['שקודר','🏞️','נהר קירי · Kiri River','קל'],['שקודר','🌉','Prekal · גשר פרקאל','קל'],['שקודר','🌊','Shiroka · אגם שקודר','קל'],['צפון אלבניה','🛣️','Rrapsh Serpentine','קל · נסיעה נופית'],['צפון אלבניה','🏔️','Vermosh','קל · יום נופי'],['קומאן','🚤','אגם קומאן','קל'],['קומאן','💎','נהר שאלה','קל'],['ואלבונה','🏔️','עמק ואלבונה','קל'],['ואלבונה','🌊','מפל Rragam','קל–בינוני'],['ואלבונה','🏚️','Old Mill','קל'],['ואלבונה','💧',"Xhema's Lake",'קל'],['קרויה','🛍️','הבזאר הישן של קרויה','קל'],['קרויה','🏰','מצודת קרויה','קל–בינוני'],['קרויה','🖼️','מוזיאון סקנדרבג','קל'],['דורס','🏛️','האמפיתיאטרון של דורס','קל'],['דורס','🌊','טיילת דורס','קל מאוד'],['טירנה','🚡','Dajti Ekspres','קל'],['טירנה','🏙️','כיכר סקנדרבג','קל'],['טירנה','🕌',"מסגד Et'hem Bey",'קל'],['טירנה','🕳️','Bunk’Art 2','קל'],['טירנה','🔺','הפירמידה של טירנה','קל']];
 function title(e,t,d){return `<div class="sectionTitle"><small>${e}</small><h2>${t}</h2><p>${d}</p></div>`}
 function renderNav(){nav.innerHTML=tabs.map(x=>`<button class="${tab===x[0]?'active':''}" onclick="navigateTo('${x[0]}')">${x[1]} ${x[2]}</button>`).join('')}
 function home(){
@@ -88,6 +88,30 @@ function strip(){return `<div class="daystrip">${days.map((d,i)=>`<button class=
 function mapsUrl(q){
   return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
 }
+
+const attractionStatus={
+  'כנסיית ת׳ת':'במסלול שלנו','Qafë e Thorës':'במסלול שלנו','מפל גרונאס':'אופציונלי בדרך','העין הכחולה':'במסלול שלנו','Thethi Zipline':'אופציונלי בדרך','Bus Stop · Theth':'אופציונלי בדרך',
+  'מצודת Rozafa':'במסלול שלנו','גשר מסי · Mesi Bridge':'אופציונלי בדרך','נהר קירי · Kiri River':'אופציונלי בדרך','Prekal · גשר פרקאל':'אופציונלי בדרך','Shiroka · אגם שקודר':'אופציונלי בדרך',
+  'Rrapsh Serpentine':'מחוץ למסלול','Vermosh':'מחוץ למסלול','אגם קומאן':'במסלול שלנו','נהר שאלה':'במסלול שלנו','עמק ואלבונה':'במסלול שלנו','מפל Rragam':'אופציונלי בדרך',
+  'Old Mill':'במסלול שלנו',"Xhema's Lake":'אופציונלי בדרך','הבזאר הישן של קרויה':'במסלול שלנו','מצודת קרויה':'במסלול שלנו','מוזיאון סקנדרבג':'במסלול שלנו',
+  'האמפיתיאטרון של דורס':'אופציונלי בדרך','טיילת דורס':'במסלול שלנו','Dajti Ekspres':'במסלול שלנו','כיכר סקנדרבג':'במסלול שלנו',"מסגד Et'hem Bey":'במסלול שלנו','Bunk’Art 2':'אופציונלי בדרך','הפירמידה של טירנה':'במסלול שלנו'
+};
+function attrBadge(name){
+  const s=attractionStatus[name]||'אופציונלי';
+  const bg=s==='במסלול שלנו'?'#e9f8ef':s==='אופציונלי בדרך'?'#fff6df':'#f0f1f3';
+  const color=s==='במסלול שלנו'?'#197345':s==='אופציונלי בדרך'?'#8a6100':'#5d6870';
+  return `<span style="display:inline-block;margin-top:8px;padding:5px 9px;border-radius:999px;background:${bg};color:${color};font-size:12px;font-weight:900">${s}</span>`;
+}
+
+const knowledgeBase=[
+  {title:'נהר קירי ו-Prekal ליד שקודר',kind:'צפון אלבניה',tab:'attr',text:'נהר קירי עובר באזור הררי מצפון-מזרח לשקודר. אפשר לשלב נסיעה נופית לכיוון Prekal, גשר Prekal וקניון Ura e Shtrenjtë. מתאים כאפשרות בלבד אם נשאר זמן ומזג האוויר טוב.'},
+  {title:'Rrapsh ו-Vermosh',kind:'מחוץ למסלול',tab:'tools',text:'Rrapsh Serpentine ו-Vermosh הם יעדים נופיים בצפון הרחוק. הם אינם חלק מהמסלול הנוכחי שלנו ונשמרים במאגר כרעיונות בלבד.'},
+  {title:'Shiroka ואגם שקודר',kind:'אופציונלי',tab:'attr',text:'Shiroka היא כפר נופש על שפת אגם שקודר ומתאימה לקפה, ארוחה או עצירת שקיעה אם נשאר זמן באזור.'},
+  {title:'דלק ותשלומים באלבניה',kind:'טיפ חשוב',tab:'tools',anchor:'tools-tips',text:'לפי המלצות שקיבלנו ממטיילים, מומלץ לתדלק בתחנות מסודרות ולא לבנות על תשלום בכרטיס בכל מקום. להחזיק מזומן בלֶק, במיוחד לדלק, חניה, כבישים ואזורים מרוחקים.'},
+  {title:'כסף ומזומן',kind:'טיפ חשוב',tab:'tools',anchor:'tools-tips',text:'המטבע המקומי הוא לק. כדאי לשאת מזומן בלֶק ולא להסתמך על כרטיס אשראי בלבד. באזורים כפריים ובהרים מזומן שימושי במיוחד.'},
+  {title:'מסעדות מומלצות בטירנה',kind:'אוכל',tab:'food',anchor:'tirana-food',text:'המלצות שנשלחו בקבוצה: Oda Traditional Albanian Restaurant, Era Blloku, Restorant Tymi, Ceren Ismet Shehu, Shyqi Restaurant Tradicional, El Gaucho Tirana. לבדוק שעות וזמינות ביום הביקור.'},
+  {title:'דרום אלבניה – מחוץ למסלול',kind:'מחוץ למסלול',tab:'tools',anchor:'knowledge-notes',text:'רעיונות שנשמרו לעתיד ואינם במסלול הנוכחי: ולורה, מעבר לוגרה, הימרה, פורטו פלרמו, בורש, סרנדה, קסמיל, בוטרינט, ג׳ירוקסטרה, בראט, קניון אוסומי ומפל Bogova.'}
+];
 
 const documents=[
   {owner:'shared',type:'🚕',title:'Hotel Muja · הוראות הסעה',sub:'14.9 · הסעה חינם משדה התעופה',file:'docs/hotel_muja_transfer_message.jpeg',days:[1]},
@@ -1006,7 +1030,7 @@ function attr(){
   return title(
     '🏰 אטרקציות',
     'מאגר המקומות שלנו',
-    'האטרקציות מסודרות לפי יעד. המאגר נשאר קבוע גם אם סדר ימי הטיול משתנה.'
+    'האטרקציות מסודרות לפי יעד ומסומנות לפי רלוונטיות: במסלול שלנו, אופציונלי בדרך או מחוץ למסלול.'
   )+
 
   Object.entries(groups).map(([city,items])=>`
@@ -1095,6 +1119,7 @@ function attr(){
               <b>
                 קושי: ${a[3]}
               </b>
+              <div>${attrBadge(a[2])}</div>
 
               <div style="
                 display:flex;
@@ -1138,7 +1163,7 @@ function tools(){
   return title(
     '🧰 כלים',
     'כל מה שצריך בדרך',
-    'מטבע, ניווט, נהיגה וחירום.'
+    'מטבע, ניווט, נהיגה, תשלומים וטיפים חשובים.'
   )+
 
   `<div class="tiles">
@@ -1146,61 +1171,41 @@ function tools(){
     <div class="tile" style="grid-column:1/-1">
       <div class="ico">💱</div>
       <h3>שערי מטבע</h3>
+      <div id="currencyRates"><p>טוען שערים עדכניים...</p></div>
+      <button class="btn" style="margin-top:12px" onclick="loadCurrencyRates(true)">🔄 רענן שערים</button>
+      <small id="currencyUpdated" style="display:block;margin-top:10px;color:#60717a"></small>
+    </div>
 
-      <div id="currencyRates">
-        <p>טוען שערים עדכניים...</p>
-      </div>
-
-      <button
-        class="btn"
-        style="margin-top:12px"
-        onclick="loadCurrencyRates(true)">
-        🔄 רענן שערים
-      </button>
-
-      <small
-        id="currencyUpdated"
-        style="display:block;margin-top:10px;color:#60717a">
-      </small>
+    <div class="tile" id="tools-tips" style="grid-column:1/-1;border:2px solid #dce5e8">
+      <div class="ico">💡</div>
+      <h3>טיפים חשובים · כסף, דלק ותשלומים</h3>
+      <p><b>💵 מזומן:</b> כדאי להחזיק מזומן בלֶק ולא להסתמך על כרטיס בלבד, במיוחד בהרים, בחניות, בדלק ובמקומות קטנים.</p>
+      <p><b>⛽ דלק:</b> להעדיף תחנות מסודרות/רשתות מוכרות. לפי המלצות שקיבלנו ממטיילים, לא בכל תחנה אפשר לשלם בכרטיס — לכן מחזיקים מזומן זמין.</p>
+      <p><b>💳 כרטיס:</b> להשתמש כשאפשר, אבל לא כאמצעי התשלום היחיד.</p>
+      <p><b>🏔️ אזורים מרוחקים:</b> מתדלקים מראש לפני כניסה לעמקים ולהרים ולא מחכים לנורה האחרונה.</p>
+      <small style="color:#60717a">המידע מבוסס על המלצות מטיילים שנשלחו אלינו; תנאים בפועל יכולים להשתנות.</small>
     </div>
 
     <div class="tile">
-      <div class="ico">🗺️</div>
-      <h3>Google Maps</h3>
+      <div class="ico">🗺️</div><h3>Google Maps</h3>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <a
-          class="btn"
-          target="_blank"
-          rel="noopener"
-          href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.en)}">
-          פתח ל-${d.city}
-        </a>
+        <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.en)}">פתח ל-${d.city}</a>
         ${d.hotel?`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl(d.hotelQuery)}">🏨 למלון</a>`:''}
       </div>
     </div>
 
-    <div class="tile">
-      <div class="ico">🚗</div>
-      <h3>נהיגה</h3>
-      <p>בכבישים הרריים לא למהר ולהשאיר מרווח זמן.</p>
-    </div>
+    <div class="tile"><div class="ico">🚗</div><h3>נהיגה</h3><p>בכבישים הרריים לא למהר, להשאיר מרווח זמן ולהשתמש בבלימת מנוע בירידות ארוכות.</p></div>
+    <div class="tile"><div class="ico">🎒</div><h3>לתיק היומי</h3><p>מים, כובע, שכבה חמה, משקפי שמש ומטען נייד.</p></div>
+    <div class="tile"><div class="ico">📞</div><h3>חירום</h3><p>112 — מספר החירום האירופי.</p></div>
+    <div class="tile"><div class="ico">🥾</div><h3>קצב</h3><p>מתחילים קל ובודקים את השטח לפני שממשיכים.</p></div>
 
-    <div class="tile">
-      <div class="ico">🎒</div>
-      <h3>לתיק היומי</h3>
-      <p>מים, כובע, שכבה חמה, משקפי שמש ומטען נייד.</p>
-    </div>
-
-    <div class="tile">
-      <div class="ico">📞</div>
-      <h3>חירום</h3>
-      <p>112 — מספר החירום האירופי.</p>
-    </div>
-
-    <div class="tile">
-      <div class="ico">🥾</div>
-      <h3>קצב</h3>
-      <p>מתחילים קל ובודקים את השטח לפני שממשיכים.</p>
+    <div class="tile" id="knowledge-notes" style="grid-column:1/-1">
+      <details>
+        <summary style="cursor:pointer;font-weight:900;font-size:18px">📚 מאגר ידע נוסף · לא להעמיס על הלו״ז</summary>
+        <div style="margin-top:14px;display:grid;gap:12px">
+          ${knowledgeBase.filter(k=>k.kind==='מחוץ למסלול'||k.kind==='צפון אלבניה'||k.kind==='אופציונלי').map(k=>`<div class="tips"><b>${k.title}</b><br>${k.text}</div>`).join('')}
+        </div>
+      </details>
     </div>
 
   </div>`;
@@ -1325,7 +1330,13 @@ function showCurrencyRates(rates,offline=false){
       +rates.updated;
   }
 }
-function food(){let x=[['🥐','Byrek','מאפה מקומי במילוי גבינה, תרד או בשר'],['🍲','Tavë Kosi','כבש אפוי עם יוגורט וביצה'],['🍢','Qofte','קציצות מתובלות'],['🐟','דג טרי','מומלץ בדורס ובשקודר'],['🍨','קפה וגלידה','עצירה רגועה בדורס ובטירנה']];return title('🍜 אוכל','מה כדאי לטעום','כמה מנות מקומיות בדרך.')+`<div class="tiles">${x.map(a=>`<div class="tile"><div class="ico">${a[0]}</div><h3>${a[1]}</h3><p>${a[2]}</p></div>`).join('')}</div>`}
+function food(){
+  let x=[['🥐','Byrek','מאפה מקומי במילוי גבינה, תרד או בשר'],['🍲','Tavë Kosi','כבש אפוי עם יוגורט וביצה'],['🍢','Qofte','קציצות מתובלות'],['🐟','דג טרי','מומלץ בדורס ובשקודר'],['🍨','קפה וגלידה','עצירה רגועה בדורס ובטירנה']];
+  const tirana=['Oda Traditional Albanian Restaurant','Era Blloku','Restorant Tymi','Ceren Ismet Shehu','Shyqi Restaurant Tradicional','El Gaucho Tirana'];
+  return title('🍜 אוכל','מה כדאי לטעום','מנות מקומיות + המלצות שנשמרו לטירנה.')+
+    `<div class="tiles">${x.map(a=>`<div class="tile"><div class="ico">${a[0]}</div><h3>${a[1]}</h3><p>${a[2]}</p></div>`).join('')}</div>`+
+    `<section id="tirana-food" class="card" style="margin-top:18px"><h3>🍽️ המלצות נוספות בטירנה</h3><p>שמות שנשלחו אלינו כמומלצים. בודקים ביום עצמו שעות, זמינות ומיקום.</p><div style="display:flex;gap:8px;flex-wrap:wrap">${tirana.map(n=>`<a class="btn" target="_blank" rel="noopener" href="${mapsUrl(n+' Tirana Albania')}">${n}</a>`).join('')}</div></section>`;
+}
 function near(){return title('📍 סביבי','מה יש קרוב אלינו','פתחו חיפוש סביב המיקום הנוכחי.')+`<div class="card"><button class="btn" onclick="locate()">📍 מצא את המיקום שלי</button><div id="nearout" style="margin-top:15px"></div></div>`}
 function locate(){
   if(!navigator.geolocation){nearout.innerHTML='המכשיר אינו תומך בשירותי מיקום.';return;}
@@ -1372,7 +1383,17 @@ const searchAliases={
   'העין הכחולה':['blue eye','blue eye theth'],
   'רכבת':['train','rail','רכבת ישראל'],
   'פספורטכארד':['passportcard','ביטוח נסיעות'],
-  'פספורט קארד':['passportcard','ביטוח נסיעות']
+  'פספורט קארד':['passportcard','ביטוח נסיעות'],
+  'קירי':['kiri river','kir river'],
+  'נהר קירי':['kiri river','kir river'],
+  'פרקאל':['prekal','prekal bridge'],
+  'גשר פרקאל':['prekal bridge','prekal'],
+  'ורמוש':['vermosh'],
+  'ראפש':['rrapsh','rrapsh serpentine'],
+  'דלק':['fuel','petrol','gas station','תחנת דלק'],
+  'מזומן':['cash','lek','לק'],
+  'כרטיס':['card','credit card','תשלום בכרטיס'],
+  'מסעדות טירנה':['tirana restaurants','oda','era blloku','restorant tymi']
 };
 function expandSearchTerms(q){
   const n=norm(q); const terms=new Set([n]);
@@ -1401,6 +1422,7 @@ function buildSearchIndex(){
   });
   attractions.forEach((a,i)=>out.push({kind:'אטרקציה',title:a[2],text:a.join(' · '),tab:'attr',anchor:`attr-${i}`}));
   documents.forEach((d,i)=>out.push({kind:'אישור',title:d.title,text:[d.title,d.sub,ownerMeta[d.owner]?.label].join(' · '),tab:'docs',anchor:`doc-${i}`}));
+  knowledgeBase.forEach(k=>out.push({kind:k.kind,title:k.title,text:k.text,tab:k.tab||'tools',anchor:k.anchor||'knowledge-notes'}));
   return out;
 }
 function goHome(){navigateTo('home',selected,{scrollTop:true});}

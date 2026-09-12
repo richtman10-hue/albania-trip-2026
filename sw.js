@@ -1,4 +1,4 @@
-const CACHE='albania-2026-v35';
+const CACHE='albania-2026-v36';
 const ASSETS=[
   "./robots.txt",
   "./apple-touch-icon.png",
