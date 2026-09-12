@@ -1,6 +1,7 @@
 <!doctype html><html lang="he" dir="rtl"><head><meta name="robots" content="noindex,nofollow,noarchive,nosnippet"><meta name="referrer" content="no-referrer"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>אישור</title><style>
 *{box-sizing:border-box}body{margin:0;background:#eef3f5;font-family:Arial,Helvetica,sans-serif;color:#10242d}.bar{position:sticky;top:0;z-index:10;background:#0c4d58;color:#fff;padding:12px 14px;display:flex;gap:10px;align-items:center;justify-content:space-between;box-shadow:0 2px 10px #0002}.title{font-weight:800;font-size:18px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.btn{border:0;border-radius:999px;background:#fff;color:#0c4d58;padding:9px 13px;font-weight:800;text-decoration:none;display:inline-block;white-space:nowrap}.wrap{max-width:1100px;margin:0 auto;padding:14px}.page{display:block;width:100%;height:auto;background:#fff;margin:0 auto 16px;border-radius:12px;box-shadow:0 2px 14px #0002}.note{background:#fff;padding:12px 14px;border-radius:12px;margin-bottom:12px;line-height:1.5}.actions{display:flex;gap:8px;flex-wrap:wrap}.small{font-size:13px;color:#48606a}@media(max-width:600px){.bar{align-items:flex-start;flex-direction:column}.actions{width:100%}.btn{font-size:14px}.wrap{padding:8px}.page{border-radius:6px;margin-bottom:10px}}
-</style></head><body><div class="bar"><div class="title" id="ttl">אישור</div><div class="actions"><a class="btn" href="index.html?tab=docs">← חזרה לאישורים</a><a class="btn" href="index.html?tab=home">🏠 בית</a><a class="btn" id="pdfBtn" href="#" target="_blank" rel="noopener">קובץ מקורי</a></div></div><main class="wrap"><div class="note">התצוגה הותאמה למסך כדי להציג את כל העמוד ללא חיתוך. ניתן לגלול בין העמודים. <span class="small" id="origNote"></span></div><div id="pages"></div></main><script>
+</style></head><body><div class="bar"><div class="title" id="ttl">אישור</div><div class="actions"><a class="btn" href="index.html?tab=docs" onclick="return backToDocs(event)">← חזרה לאישורים</a><a class="btn" href="index.html?tab=home">🏠 בית</a><a class="btn" id="pdfBtn" href="#" target="_blank" rel="noopener">קובץ מקורי</a></div></div><main class="wrap"><div class="note">התצוגה הותאמה למסך כדי להציג את כל העמוד ללא חיתוך. ניתן לגלול בין העמודים. <span class="small" id="origNote"></span></div><div id="pages"></div></main><script>
+function backToDocs(e){e.preventDefault();location.replace('index.html?tab=docs');return false;}
 (async()=>{
   const q=new URLSearchParams(location.search);
   const file=q.get('file'); const title=q.get('title')||'אישור';
@@ -15,8 +16,11 @@
   const box=document.getElementById('pages');
   function addImage(src,i){
     const img=document.createElement('img'); img.className='page'; img.alt=title+' - עמוד '+(i+1); img.loading='eager';
-    img.src=src;
+    let retried=false;
+    const base=new URL(src,location.href).href;
+    img.src=base;
     img.onerror=()=>{
+      if(!retried&&navigator.onLine){retried=true;img.src=base+(base.includes('?')?'&':'?')+'v=35&t='+Date.now();return;}
       img.remove();
       const n=document.createElement('div'); n.className='note';
       n.innerHTML='לא ניתן לטעון עמוד זה כרגע. נסו לסגור ולפתוח שוב את האישור'+(original.style.display==='none'?' בנוכחות אינטרנט.':', או השתמשו בקובץ המקורי.');
@@ -32,6 +36,7 @@
       'docs/passportcard_ariew_drorit_14-24sep.pdf':['previews/passportcard_ariew_drorit_14-24sep/page-1.webp','previews/passportcard_ariew_drorit_14-24sep/page-2.webp','previews/passportcard_ariew_drorit_14-24sep/page-3.webp']
     };
     let pages=critical[file]||[];
+    if(file==='docs/mrizi_confirmation_full_17sep.png' && !pages.length) pages=['docs/mrizi_confirmation_full_17sep.png','docs/mrizi_confirmation_17sep.png'];
     if(!pages.length){
       const r=await fetch('previews-manifest.json',{cache:'no-store'}); if(!r.ok) throw new Error('manifest '+r.status);
       const m=await r.json(); pages=m[file]||[];
